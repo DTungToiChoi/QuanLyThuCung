@@ -1,9 +1,14 @@
-import { useState } from 'react';
-import { Form, Input, Button, Card, Typography } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
+import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from '@tanstack/react-router'
+import { Form, Input, Button, Card, Typography, message } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
+import { QUAN_LY_NHAN_VIEN } from '../../../admin/constants'
+import { authApi, type LoginPayload } from '../../../../shared/api'
+import { NHAN_VIEN_HOME } from '../../../../shared/constants'
+import { tokenManager } from '../../../../shared/tokenManager'
 
-const { Title, Text } = Typography;
+const { Title, Text } = Typography
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -12,12 +17,12 @@ const Wrapper = styled.div`
   justify-content: center;
   background: linear-gradient(135deg, #f0f2f0 0%, #e2e2e2 100%);
   padding: 20px;
-`;
+`
 
 const Container = styled.div`
   width: 100%;
   max-width: 460px;
-`;
+`
 
 const StyledCard = styled(Card)`
   border-radius: 24px;
@@ -28,7 +33,7 @@ const StyledCard = styled(Card)`
   .ant-card-body {
     padding: 48px 40px;
   }
-`;
+`
 
 const LogoSection = styled.div`
   text-align: center;
@@ -45,17 +50,17 @@ const LogoSection = styled.div`
     letter-spacing: 3px;
     margin-bottom: 4px !important;
     font-weight: 900;
-    font-size: 32px !important; /* Tăng kích thước chữ */
+    font-size: 32px !important;
   }
 
   .brand-sub {
     letter-spacing: 6px;
     color: #4a4a4a;
     font-weight: 600;
-    font-size: 20px !important; /* Tăng kích thước chữ */
+    font-size: 20px !important;
     margin-bottom: 12px !important;
   }
-`;
+`
 
 const StyledButton = styled(Button)`
   height: 54px;
@@ -70,27 +75,49 @@ const StyledButton = styled(Button)`
     background-color: #556638 !important;
     border-color: #556638 !important;
   }
-`;
+`
 
 const StyledInput = styled(Input)`
   height: 50px;
   border-radius: 10px;
   font-size: 16px;
-`;
+`
 
 const StyledPassword = styled(Input.Password)`
   height: 50px;
   border-radius: 10px;
   font-size: 16px;
-`;
+`
 
 export default function Login() {
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
-  const onFinish = async () => {
-    setLoading(true);
-    setTimeout(() => setLoading(false), 1500);
-  };
+  const loginMutation = useMutation({
+    mutationFn: (values: LoginPayload) => authApi.login(values),
+    onSuccess: async (response) => {
+      if (!response.success || !response.data?.accessToken) {
+        message.error(response.message || 'Đăng nhập thất bại')
+        return
+      }
+
+      tokenManager.setTokens(response.data)
+
+      if (response.data.roles.includes('ADMIN')) {
+        await navigate({ to: QUAN_LY_NHAN_VIEN })
+        return
+      }
+
+      if (response.data.roles.includes('NHANVIEN')) {
+        await navigate({ to: NHAN_VIEN_HOME })
+        return
+      }
+
+      message.error('Tài khoản chưa được phân quyền phù hợp')
+    },
+    onError: () => {
+      message.error('Tên đăng nhập hoặc mật khẩu không đúng')
+    },
+  })
 
   return (
     <Wrapper>
@@ -105,18 +132,19 @@ export default function Login() {
             </Text>
           </LogoSection>
 
-          <Form layout="vertical" onFinish={onFinish} requiredMark={false}>
+          <Form<LoginPayload>
+            layout="vertical"
+            onFinish={(values) => loginMutation.mutate(values)}
+            requiredMark={false}
+          >
             <Form.Item
-              name="email"
-              label={<Text strong style={{ fontSize: 16 }}>Email quản trị</Text>}
-              rules={[
-                { required: true, message: 'Vui lòng nhập email!' },
-                { type: 'email', message: 'Email không hợp lệ!' }
-              ]}
+              name="username"
+              label={<Text strong style={{ fontSize: 16 }}>Tên đăng nhập</Text>}
+              rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập!' }]}
             >
-              <StyledInput 
-                prefix={<UserOutlined style={{ color: '#6b7e46' }} />} 
-                placeholder="admin@trangxinh.vn" 
+              <StyledInput
+                prefix={<UserOutlined style={{ color: '#6b7e46' }} />}
+                placeholder="nv02"
               />
             </Form.Item>
 
@@ -125,20 +153,20 @@ export default function Login() {
               label={<Text strong style={{ fontSize: 16 }}>Mật khẩu</Text>}
               rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
             >
-              <StyledPassword 
-                prefix={<LockOutlined style={{ color: '#6b7e46' }} />} 
-                placeholder="••••••••" 
+              <StyledPassword
+                prefix={<LockOutlined style={{ color: '#6b7e46' }} />}
+                placeholder="••••••••"
               />
             </Form.Item>
 
             <Form.Item>
-              <StyledButton type="primary" htmlType="submit" loading={loading} block>
+              <StyledButton type="primary" htmlType="submit" loading={loginMutation.isPending} block>
                 ĐĂNG NHẬP NGAY
               </StyledButton>
             </Form.Item>
           </Form>
         </StyledCard>
-        
+
         <div style={{ textAlign: 'center', marginTop: 24 }}>
           <Text type="secondary" style={{ fontSize: 13, opacity: 0.7 }}>
             © 2026 Spa Thú Cưng Trang Xinh
@@ -146,5 +174,5 @@ export default function Login() {
         </div>
       </Container>
     </Wrapper>
-  );
+  )
 }

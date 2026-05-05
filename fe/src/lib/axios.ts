@@ -1,14 +1,13 @@
-// src/lib/axios.ts
 import axios from 'axios'
 import { ENV } from '../config/env'
+import { tokenManager } from '../shared/tokenManager'
 
 const api = axios.create({
   baseURL: ENV.API_URL,
 })
 
-// request: gắn token
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('accessToken')
+  const token = tokenManager.getAccessToken()
 
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
@@ -17,14 +16,14 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-// response: handle lỗi
 api.interceptors.response.use(
   (res) => res,
   async (error) => {
     if (error.response?.status === 401) {
-      // TODO: refresh token sau
-      localStorage.removeItem('accessToken')
+      // TODO: add refresh token flow later.
+      tokenManager.clearTokens()
     }
+
     return Promise.reject(error)
   }
 )
