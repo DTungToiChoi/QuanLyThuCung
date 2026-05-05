@@ -3,6 +3,8 @@ import { useNavigate } from '@tanstack/react-router'
 import { Form, Input, Button, Card, Typography, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+import bgLogin from '/src/assets/bg-login.png'
+
 import { QUAN_LY_NHAN_VIEN } from '../../../admin/constants'
 import { authApi, type LoginPayload } from '../../../../shared/api'
 import { NHAN_VIEN_HOME } from '../../../../shared/constants'
@@ -15,20 +17,30 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f0f2f0 0%, #e2e2e2 100%);
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.4)
+  ), url(${bgLogin});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   padding: 20px;
 `
 
 const Container = styled.div`
   width: 100%;
   max-width: 460px;
+  position: relative;
+  z-index: 1;
 `
 
 const StyledCard = styled(Card)`
   border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   border: none;
   overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.95);
 
   .ant-card-body {
     padding: 48px 40px;
@@ -43,6 +55,7 @@ const LogoSection = styled.div`
     width: 130px;
     height: auto;
     margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   .brand-main {
@@ -51,6 +64,7 @@ const LogoSection = styled.div`
     margin-bottom: 4px !important;
     font-weight: 900;
     font-size: 32px !important;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
   }
 
   .brand-sub {
@@ -59,6 +73,7 @@ const LogoSection = styled.div`
     font-weight: 600;
     font-size: 20px !important;
     margin-bottom: 12px !important;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.8);
   }
 `
 
@@ -71,7 +86,8 @@ const StyledButton = styled(Button)`
   border-radius: 12px;
   margin-top: 16px;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: #556638 !important;
     border-color: #556638 !important;
   }
@@ -168,7 +184,7 @@ export default function Login() {
         </StyledCard>
 
         <div style={{ textAlign: 'center', marginTop: 24 }}>
-          <Text type="secondary" style={{ fontSize: 13, opacity: 0.7 }}>
+          <Text type="secondary" style={{ fontSize: 13, opacity: 0.8, color: '#fff' }}>
             © 2026 Spa Thú Cưng Trang Xinh
           </Text>
         </div>
