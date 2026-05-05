@@ -1,0 +1,24 @@
+.ant-picker {
+  height: 3.5rem;
+  .ant-picker-input > input {
+    font-size: 1.4rem;
+  }
+}
+
+.ant-picker-dropdown
+  .ant-picker-cell-in-view.ant-picker-cell-selected:not(
+    .ant-picker-cell-disabled
+  )
+  .ant-picker-cell-inner {
+  color: var(--text-on-primary);
+  background: var(--primary);
+  font-weight: 600;
+}
+
+.ant-picker-today-btn {
+  color: var(--primary);
+}
+
+.ant-picker-now-btn {
+  color: var(--primary);
+}

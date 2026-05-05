@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id                     Int       @id @default(autoincrement())
+  username               String    @unique
+  email                  String?   @unique
+  password               String
+  resetPasswordToken     String?
+  resetPasswordExpiresAt DateTime?
+  roles                  Role[]
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
+}
+
+model SanPham {
+  id          Int      @id @default(autoincrement())
+  tenSanPham  String
+  moTa        String?
+  gia         Decimal  @db.Decimal(12, 2)
+  soLuongTon  Int      @default(0)
+  danhMucId   Int
+  danhMuc     DanhMucSanPham @relation(fields: [danhMucId], references: [id])
+  hinhAnhUrl  String?
+  hoatDong    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model DanhMucSanPham {
+  id        Int      @id @default(autoincrement())
+  tenDanhMuc String   @unique
+  moTa      String?
+  hoatDong  Boolean  @default(true)
+  sanPhams  SanPham[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
