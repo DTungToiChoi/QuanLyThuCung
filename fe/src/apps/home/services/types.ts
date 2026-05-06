@@ -1,3 +1,5 @@
+import type { IBaseFilter } from "@/shared/types"
+
 export interface IDichVu {
   id: number
   tenDichVu: string
@@ -9,9 +11,4 @@ export interface IDichVu {
   updatedAt: string
 }
 
-export type TFilter = {
-  Keyword?: string
-  Page?: number
-  PageSize?: number
-  'Query.TenDichVu'?: string
-}
+export type TFilter = { Query?: object; } & IBaseFilter

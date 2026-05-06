@@ -8,16 +8,10 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import { HomeGlobalStyle, token } from "../../styles/theme";
-import { useDichVuQuery, type IDichVu } from "./services";
-import { urlHinhAnh } from "../../../../shared/utils/mediaUrl";
-
-type ServiceUI = {
-  id: number;
-  title: string;
-  desc: string;
-  price: string;
-  img: string;
-};
+import useData from "./hooks/useData";
+import { Spin } from "antd";
+import { useNavigate } from "@tanstack/react-router";
+import { DAT_LICH } from "../../constants";
 
 const whyItems = [
   {
@@ -74,19 +68,9 @@ const testimonials = [
   },
 ];
 
-const mapDichVu = (s: IDichVu): ServiceUI => ({
-  id: s.id,
-  title: s.tenDichVu,
-  desc: s.moTaDichVu || "",
-  price: `từ ${Number(s.giaDichVu).toLocaleString("vi-VN")}đ`,
-  img: urlHinhAnh(s.hinhAnhUrl),
-});
-
 export default function TrangChuPage() {
-  const { data, isLoading } = useDichVuQuery({ Page: 1, PageSize: 4 });
-
-  const services: ServiceUI[] =
-    data?.data?.map(mapDichVu) ?? [];
+  const navigate = useNavigate();
+  const { data, isLoading } = useData({ page: 1, pageSize: 4 });
 
   return (
     <MainLayout>
@@ -105,7 +89,7 @@ export default function TrangChuPage() {
             <S.HeroDesc>
               Mang đến trải nghiệm làm đẹp và nghỉ dưỡng đẳng cấp cho thú cưng.
             </S.HeroDesc>
-            <S.HeroButton>Đặt lịch ngay</S.HeroButton>
+            <S.HeroButton onClick={() => navigate({to: DAT_LICH})}>Đặt lịch ngay</S.HeroButton>
           </S.HeroContent>
         </S.HeroInner>
       </S.HeroSection>
@@ -119,31 +103,27 @@ export default function TrangChuPage() {
           </S.SectionHead>
 
           <S.ServiceGrid>
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, i) => (
-                  <S.ServiceCard key={i}>
-                    <div>Loading...</div>
-                  </S.ServiceCard>
-                ))
-              : services.map((s) => (
-                  <S.ServiceCard key={s.id}>
-                    <S.ServiceImgWrap>
-                      <S.ServiceImg src={s.img} />
-                    </S.ServiceImgWrap>
+            <Spin spinning={isLoading} tip="Đang tải dịch vụ...">
+              {data.map((s) => (
+                <S.ServiceCard key={s.id}>
+                  <S.ServiceImgWrap>
+                    <S.ServiceImg src={s.hinhAnhUrl} />
+                  </S.ServiceImgWrap>
 
-                    <S.ServiceBody>
-                      <S.ServiceTitle>{s.title}</S.ServiceTitle>
-                      <S.ServiceDesc>{s.desc}</S.ServiceDesc>
+                  <S.ServiceBody>
+                    <S.ServiceTitle>{s.tenDichVu}</S.ServiceTitle>
+                    <S.ServiceDesc>{s.moTaDichVu}</S.ServiceDesc>
 
-                      <S.ServiceFooter>
-                        <S.ServicePrice>{s.price}</S.ServicePrice>
-                        <S.ArrowBtn>
-                          <ArrowRightOutlined />
-                        </S.ArrowBtn>
-                      </S.ServiceFooter>
-                    </S.ServiceBody>
-                  </S.ServiceCard>
-                ))}
+                    <S.ServiceFooter>
+                      <S.ServicePrice>{s.giaDichVu}</S.ServicePrice>
+                      <S.ArrowBtn>
+                        <ArrowRightOutlined />
+                      </S.ArrowBtn>
+                    </S.ServiceFooter>
+                  </S.ServiceBody>
+                </S.ServiceCard>
+              ))}
+            </Spin>
           </S.ServiceGrid>
         </S.Container>
       </S.Section>
