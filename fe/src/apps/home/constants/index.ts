@@ -4,7 +4,7 @@ export const TRANG_CHU = `${HOME_ROUTE}/trang-chu`;
 export const TRANG_CHU_ROUTE = '/trang-chu';
 
 export const DICH_VU = `${HOME_ROUTE}/dich-vu`;
-export const DICH_VU_ROUTE = '/diich-vu';
+export const DICH_VU_ROUTE = '/dich-vu';
 
 export const DAT_LICH = `${HOME_ROUTE}/dat-lich`;
 export const DAT_LICH_ROUTE = '/dat-lich';

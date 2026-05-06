@@ -35,6 +35,23 @@ export type SanPham = $Result.DefaultSelection<Prisma.$SanPhamPayload>
 export type DanhMucSanPham = $Result.DefaultSelection<Prisma.$DanhMucSanPhamPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const ChucVu: {
+  QUAN_LY: 'QUAN_LY',
+  BAC_SI: 'BAC_SI'
+};
+
+export type ChucVu = (typeof ChucVu)[keyof typeof ChucVu]
+
+}
+
+export type ChucVu = $Enums.ChucVu
+
+export const ChucVu: typeof $Enums.ChucVu
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -1222,8 +1239,10 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: number | null
     username: string | null
+    tenNhanVien: string | null
     email: string | null
     password: string | null
+    chucVu: $Enums.ChucVu | null
     resetPasswordToken: string | null
     resetPasswordExpiresAt: Date | null
     createdAt: Date | null
@@ -1233,8 +1252,10 @@ export namespace Prisma {
   export type UserMaxAggregateOutputType = {
     id: number | null
     username: string | null
+    tenNhanVien: string | null
     email: string | null
     password: string | null
+    chucVu: $Enums.ChucVu | null
     resetPasswordToken: string | null
     resetPasswordExpiresAt: Date | null
     createdAt: Date | null
@@ -1244,8 +1265,10 @@ export namespace Prisma {
   export type UserCountAggregateOutputType = {
     id: number
     username: number
+    tenNhanVien: number
     email: number
     password: number
+    chucVu: number
     resetPasswordToken: number
     resetPasswordExpiresAt: number
     createdAt: number
@@ -1265,8 +1288,10 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     username?: true
+    tenNhanVien?: true
     email?: true
     password?: true
+    chucVu?: true
     resetPasswordToken?: true
     resetPasswordExpiresAt?: true
     createdAt?: true
@@ -1276,8 +1301,10 @@ export namespace Prisma {
   export type UserMaxAggregateInputType = {
     id?: true
     username?: true
+    tenNhanVien?: true
     email?: true
     password?: true
+    chucVu?: true
     resetPasswordToken?: true
     resetPasswordExpiresAt?: true
     createdAt?: true
@@ -1287,8 +1314,10 @@ export namespace Prisma {
   export type UserCountAggregateInputType = {
     id?: true
     username?: true
+    tenNhanVien?: true
     email?: true
     password?: true
+    chucVu?: true
     resetPasswordToken?: true
     resetPasswordExpiresAt?: true
     createdAt?: true
@@ -1385,8 +1414,10 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: number
     username: string
+    tenNhanVien: string | null
     email: string | null
     password: string
+    chucVu: $Enums.ChucVu | null
     resetPasswordToken: string | null
     resetPasswordExpiresAt: Date | null
     createdAt: Date
@@ -1415,8 +1446,10 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
+    tenNhanVien?: boolean
     email?: boolean
     password?: boolean
+    chucVu?: boolean
     resetPasswordToken?: boolean
     resetPasswordExpiresAt?: boolean
     createdAt?: boolean
@@ -1430,15 +1463,17 @@ export namespace Prisma {
   export type UserSelectScalar = {
     id?: boolean
     username?: boolean
+    tenNhanVien?: boolean
     email?: boolean
     password?: boolean
+    chucVu?: boolean
     resetPasswordToken?: boolean
     resetPasswordExpiresAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "resetPasswordToken" | "resetPasswordExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "tenNhanVien" | "email" | "password" | "chucVu" | "resetPasswordToken" | "resetPasswordExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     roles?: boolean | User$rolesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1452,8 +1487,10 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       username: string
+      tenNhanVien: string | null
       email: string | null
       password: string
+      chucVu: $Enums.ChucVu | null
       resetPasswordToken: string | null
       resetPasswordExpiresAt: Date | null
       createdAt: Date
@@ -1830,8 +1867,10 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'Int'>
     readonly username: FieldRef<"User", 'String'>
+    readonly tenNhanVien: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
+    readonly chucVu: FieldRef<"User", 'ChucVu'>
     readonly resetPasswordToken: FieldRef<"User", 'String'>
     readonly resetPasswordExpiresAt: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -5255,8 +5294,10 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     username: 'username',
+    tenNhanVien: 'tenNhanVien',
     email: 'email',
     password: 'password',
+    chucVu: 'chucVu',
     resetPasswordToken: 'resetPasswordToken',
     resetPasswordExpiresAt: 'resetPasswordExpiresAt',
     createdAt: 'createdAt',
@@ -5321,6 +5362,7 @@ export namespace Prisma {
 
   export const UserOrderByRelevanceFieldEnum: {
     username: 'username',
+    tenNhanVien: 'tenNhanVien',
     email: 'email',
     password: 'password',
     resetPasswordToken: 'resetPasswordToken'
@@ -5374,6 +5416,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ChucVu'
+   */
+  export type EnumChucVuFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ChucVu'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -5410,8 +5459,10 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: IntFilter<"User"> | number
     username?: StringFilter<"User"> | string
+    tenNhanVien?: StringNullableFilter<"User"> | string | null
     email?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
+    chucVu?: EnumChucVuNullableFilter<"User"> | $Enums.ChucVu | null
     resetPasswordToken?: StringNullableFilter<"User"> | string | null
     resetPasswordExpiresAt?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -5422,8 +5473,10 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrder
+    tenNhanVien?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     password?: SortOrder
+    chucVu?: SortOrderInput | SortOrder
     resetPasswordToken?: SortOrderInput | SortOrder
     resetPasswordExpiresAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -5439,7 +5492,9 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
+    tenNhanVien?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
+    chucVu?: EnumChucVuNullableFilter<"User"> | $Enums.ChucVu | null
     resetPasswordToken?: StringNullableFilter<"User"> | string | null
     resetPasswordExpiresAt?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -5450,8 +5505,10 @@ export namespace Prisma {
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     username?: SortOrder
+    tenNhanVien?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     password?: SortOrder
+    chucVu?: SortOrderInput | SortOrder
     resetPasswordToken?: SortOrderInput | SortOrder
     resetPasswordExpiresAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -5469,8 +5526,10 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"User"> | number
     username?: StringWithAggregatesFilter<"User"> | string
+    tenNhanVien?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringWithAggregatesFilter<"User"> | string
+    chucVu?: EnumChucVuNullableWithAggregatesFilter<"User"> | $Enums.ChucVu | null
     resetPasswordToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     resetPasswordExpiresAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -5673,8 +5732,10 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     username: string
+    tenNhanVien?: string | null
     email?: string | null
     password: string
+    chucVu?: $Enums.ChucVu | null
     resetPasswordToken?: string | null
     resetPasswordExpiresAt?: Date | string | null
     createdAt?: Date | string
@@ -5685,8 +5746,10 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: number
     username: string
+    tenNhanVien?: string | null
     email?: string | null
     password: string
+    chucVu?: $Enums.ChucVu | null
     resetPasswordToken?: string | null
     resetPasswordExpiresAt?: Date | string | null
     createdAt?: Date | string
@@ -5696,8 +5759,10 @@ export namespace Prisma {
 
   export type UserUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5708,8 +5773,10 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5720,8 +5787,10 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: number
     username: string
+    tenNhanVien?: string | null
     email?: string | null
     password: string
+    chucVu?: $Enums.ChucVu | null
     resetPasswordToken?: string | null
     resetPasswordExpiresAt?: Date | string | null
     createdAt?: Date | string
@@ -5730,8 +5799,10 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5741,8 +5812,10 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5984,6 +6057,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EnumChucVuNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChucVu | EnumChucVuFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ChucVu[] | null
+    notIn?: $Enums.ChucVu[] | null
+    not?: NestedEnumChucVuNullableFilter<$PrismaModel> | $Enums.ChucVu | null
+  }
+
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -6030,8 +6110,10 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    tenNhanVien?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    chucVu?: SortOrder
     resetPasswordToken?: SortOrder
     resetPasswordExpiresAt?: SortOrder
     createdAt?: SortOrder
@@ -6045,8 +6127,10 @@ export namespace Prisma {
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    tenNhanVien?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    chucVu?: SortOrder
     resetPasswordToken?: SortOrder
     resetPasswordExpiresAt?: SortOrder
     createdAt?: SortOrder
@@ -6056,8 +6140,10 @@ export namespace Prisma {
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    tenNhanVien?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    chucVu?: SortOrder
     resetPasswordToken?: SortOrder
     resetPasswordExpiresAt?: SortOrder
     createdAt?: SortOrder
@@ -6118,6 +6204,16 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumChucVuNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChucVu | EnumChucVuFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ChucVu[] | null
+    notIn?: $Enums.ChucVu[] | null
+    not?: NestedEnumChucVuNullableWithAggregatesFilter<$PrismaModel> | $Enums.ChucVu | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumChucVuNullableFilter<$PrismaModel>
+    _max?: NestedEnumChucVuNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6365,6 +6461,10 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type NullableEnumChucVuFieldUpdateOperationsInput = {
+    set?: $Enums.ChucVu | null
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
@@ -6554,6 +6654,13 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedEnumChucVuNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChucVu | EnumChucVuFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ChucVu[] | null
+    notIn?: $Enums.ChucVu[] | null
+    not?: NestedEnumChucVuNullableFilter<$PrismaModel> | $Enums.ChucVu | null
+  }
+
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -6648,6 +6755,16 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumChucVuNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ChucVu | EnumChucVuFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ChucVu[] | null
+    notIn?: $Enums.ChucVu[] | null
+    not?: NestedEnumChucVuNullableWithAggregatesFilter<$PrismaModel> | $Enums.ChucVu | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumChucVuNullableFilter<$PrismaModel>
+    _max?: NestedEnumChucVuNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6758,8 +6875,10 @@ export namespace Prisma {
 
   export type UserCreateWithoutRolesInput = {
     username: string
+    tenNhanVien?: string | null
     email?: string | null
     password: string
+    chucVu?: $Enums.ChucVu | null
     resetPasswordToken?: string | null
     resetPasswordExpiresAt?: Date | string | null
     createdAt?: Date | string
@@ -6769,8 +6888,10 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutRolesInput = {
     id?: number
     username: string
+    tenNhanVien?: string | null
     email?: string | null
     password: string
+    chucVu?: $Enums.ChucVu | null
     resetPasswordToken?: string | null
     resetPasswordExpiresAt?: Date | string | null
     createdAt?: Date | string
@@ -6804,8 +6925,10 @@ export namespace Prisma {
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
     id?: IntFilter<"User"> | number
     username?: StringFilter<"User"> | string
+    tenNhanVien?: StringNullableFilter<"User"> | string | null
     email?: StringNullableFilter<"User"> | string | null
     password?: StringFilter<"User"> | string
+    chucVu?: EnumChucVuNullableFilter<"User"> | $Enums.ChucVu | null
     resetPasswordToken?: StringNullableFilter<"User"> | string | null
     resetPasswordExpiresAt?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -6947,8 +7070,10 @@ export namespace Prisma {
 
   export type UserUpdateWithoutRolesInput = {
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6958,8 +7083,10 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutRolesInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6969,8 +7096,10 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutRolesInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    tenNhanVien?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     password?: StringFieldUpdateOperationsInput | string
+    chucVu?: NullableEnumChucVuFieldUpdateOperationsInput | $Enums.ChucVu | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

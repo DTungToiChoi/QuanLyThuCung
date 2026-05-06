@@ -25,16 +25,21 @@ export class EmployeesService {
   async findAll(query: GetAllQueryDto) {
     const parsedQuery = parseGetAllQuery(query);
     const username = parsedQuery.query.Username;
+    const tenNhanVien = parsedQuery.query.TenNhanVien;
     const email = parsedQuery.query.Email;
+    const chucVu = parsedQuery.query.ChucVu;
     const where: Prisma.UserWhereInput = {
       roles: {
         some: { name: 'NHANVIEN' },
       },
       username: username ? { contains: username } : undefined,
+      tenNhanVien: tenNhanVien ? { contains: tenNhanVien } : undefined,
       email: email ? { contains: email } : undefined,
+      chucVu: this.parseChucVuQuery(chucVu),
       OR: parsedQuery.keyword
         ? [
             { username: { contains: parsedQuery.keyword } },
+            { tenNhanVien: { contains: parsedQuery.keyword } },
             { email: { contains: parsedQuery.keyword } },
           ]
         : undefined,
@@ -80,8 +85,10 @@ export class EmployeesService {
     return this.prisma.user.create({
       data: {
         username: dto.username,
+        tenNhanVien: dto.tenNhanVien,
         email: dto.email,
         password,
+        chucVu: dto.chucVu,
         roles: {
           connectOrCreate: {
             where: { name: 'NHANVIEN' },
@@ -104,7 +111,9 @@ export class EmployeesService {
       where: { id },
       data: {
         username: dto.username,
+        tenNhanVien: dto.tenNhanVien,
         email: dto.email,
+        chucVu: dto.chucVu,
       },
       select: this.employeeSelect,
     });
@@ -208,10 +217,18 @@ export class EmployeesService {
     }
   }
 
+  private parseChucVuQuery(value?: string) {
+    if (value === undefined) return undefined;
+    if (value === 'QUAN_LY' || value === 'BAC_SI') return value;
+    throw new BadRequestException('Query.ChucVu phải là QUAN_LY hoặc BAC_SI.');
+  }
+
   private readonly employeeSelect = {
     id: true,
     username: true,
+    tenNhanVien: true,
     email: true,
+    chucVu: true,
     roles: {
       select: {
         name: true,

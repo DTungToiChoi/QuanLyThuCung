@@ -38,9 +38,19 @@ export class EmployeesController {
     schema: { type: 'string' },
   })
   @ApiQuery({
+    name: 'Query.TenNhanVien',
+    required: false,
+    schema: { type: 'string' },
+  })
+  @ApiQuery({
     name: 'Query.Email',
     required: false,
     schema: { type: 'string' },
+  })
+  @ApiQuery({
+    name: 'Query.ChucVu',
+    required: false,
+    enum: ['QUAN_LY', 'BAC_SI'],
   })
   @ApiQuery({
     name: 'Keyword',

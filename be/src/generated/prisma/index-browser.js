@@ -123,8 +123,10 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
+  tenNhanVien: 'tenNhanVien',
   email: 'email',
   password: 'password',
+  chucVu: 'chucVu',
   resetPasswordToken: 'resetPasswordToken',
   resetPasswordExpiresAt: 'resetPasswordExpiresAt',
   createdAt: 'createdAt',
@@ -171,6 +173,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
   username: 'username',
+  tenNhanVien: 'tenNhanVien',
   email: 'email',
   password: 'password',
   resetPasswordToken: 'resetPasswordToken'
@@ -191,7 +194,10 @@ exports.Prisma.DanhMucSanPhamOrderByRelevanceFieldEnum = {
   moTa: 'moTa',
   hinhAnhUrl: 'hinhAnhUrl'
 };
-
+exports.ChucVu = exports.$Enums.ChucVu = {
+  QUAN_LY: 'QUAN_LY',
+  BAC_SI: 'BAC_SI'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
