@@ -26,32 +26,25 @@ export class DichVuService {
         : undefined,
     };
 
-    const [data, total] = await this.prisma.$transaction([
-      this.prisma.dichVu.findMany({
-        where,
-        orderBy: { id: 'desc' },
-        skip: parsedQuery.skip,
-        take: parsedQuery.take,
-      }),
-      this.prisma.dichVu.count({ where }),
-    ]);
-
-    return {
-      data,
-      metaData: {
-        page: parsedQuery.page,
-        pageSize: parsedQuery.pageSize,
-        total,
-        totalPage: Math.ceil(total / parsedQuery.pageSize),
-      },
-    };
+    return this.getPagedResult(where, parsedQuery.page, parsedQuery.pageSize, parsedQuery.skip, parsedQuery.take);
   }
 
-  async layPublic() {
-    return this.prisma.dichVu.findMany({
-      where: { hoatDong: true },
-      orderBy: { id: 'desc' },
-    });
+  async layPublic(query: GetAllQueryDto) {
+    const parsedQuery = parseGetAllQuery(query);
+    const tenDichVu = parsedQuery.query.TenDichVu;
+
+    const where: Prisma.DichVuWhereInput = {
+      tenDichVu: tenDichVu ? { contains: tenDichVu } : undefined,
+      hoatDong: true,
+      OR: parsedQuery.keyword
+        ? [
+            { tenDichVu: { contains: parsedQuery.keyword } },
+            { moTaDichVu: { contains: parsedQuery.keyword } },
+          ]
+        : undefined,
+    };
+
+    return this.getPagedResult(where, parsedQuery.page, parsedQuery.pageSize, parsedQuery.skip, parsedQuery.take);
   }
 
   async layChiTiet(id: number) {
@@ -112,6 +105,34 @@ export class DichVuService {
     await this.findById(id);
     await this.prisma.dichVu.delete({ where: { id } });
     return { message: 'Xoa dich vu thanh cong.' };
+  }
+
+  private async getPagedResult(
+    where: Prisma.DichVuWhereInput,
+    page: number,
+    pageSize: number,
+    skip: number,
+    take: number,
+  ) {
+    const [data, total] = await this.prisma.$transaction([
+      this.prisma.dichVu.findMany({
+        where,
+        orderBy: { id: 'desc' },
+        skip,
+        take,
+      }),
+      this.prisma.dichVu.count({ where }),
+    ]);
+
+    return {
+      data,
+      metaData: {
+        page,
+        pageSize,
+        total,
+        totalPage: Math.ceil(total / pageSize),
+      },
+    };
   }
 
   private async findById(id: number) {

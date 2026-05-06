@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { baseResponse } from '../../common/dto/base-response.dto';
+import { Controller, Get, Param, Query } from '@nestjs/common';
+import { ApiQuery, ApiTags } from '@nestjs/swagger';
+import { basePaginationResponse, baseResponse } from '../../common/dto/base-response.dto';
+import { GetAllQueryDto } from '../../common/dto/get-all-query.dto';
 import { DichVuService } from './dich-vu.service';
 
 @ApiTags('Dich Vu Public')
@@ -9,9 +10,13 @@ export class DichVuPublicController {
   constructor(private readonly service: DichVuService) {}
 
   @Get()
-  async layTatCa() {
-    const data = await this.service.layPublic();
-    return baseResponse(data);
+  @ApiQuery({ name: 'Query.TenDichVu', required: false, schema: { type: 'string' } })
+  @ApiQuery({ name: 'Keyword', required: false, schema: { type: 'string' } })
+  @ApiQuery({ name: 'Page', required: false, schema: { type: 'integer' } })
+  @ApiQuery({ name: 'PageSize', required: false, schema: { type: 'integer' } })
+  async layTatCa(@Query() query: GetAllQueryDto) {
+    const result = await this.service.layPublic(query);
+    return basePaginationResponse(result.data, result.metaData);
   }
 
   @Get(':id')
