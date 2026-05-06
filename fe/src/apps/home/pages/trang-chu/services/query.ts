@@ -1,17 +1,18 @@
-import { useQuery, type UseQueryOptions, type UseQueryResult } from '@tanstack/react-query';
-import type { TFilter } from './types';
-import { getDichVu } from './api';
+import { useQuery, type UseQueryOptions, type UseQueryResult } from '@tanstack/react-query'
+import type { IResponsePagination } from '../../../../../shared/types/response.type'
+import { getDichVu } from './api'
+import type { IDichVu, TFilter } from './types'
 
 export const useDichVuQuery = (
   params: TFilter,
-  options?: UseQueryOptions<any>
-): UseQueryResult<any> => {
+  options?: Omit<UseQueryOptions<IResponsePagination<IDichVu>>, 'queryKey' | 'queryFn'>
+): UseQueryResult<IResponsePagination<IDichVu>> => {
   return useQuery({
     queryKey: ['dich-vu', params],
     queryFn: () => getDichVu(params),
     ...options,
-  });
-};
+  })
+}
 
 // export const useDetailCoQuanQuanLyQuery = (
 //   id?: number,

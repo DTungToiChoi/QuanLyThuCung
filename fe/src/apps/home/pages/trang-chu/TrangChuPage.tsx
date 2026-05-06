@@ -1,8 +1,12 @@
 import * as S from "./styled";
 import MainLayout from "../../component/MainLayout";
-import { ArrowRightOutlined } from "@ant-design/icons";
-import { LiaHandshakeSolid } from "react-icons/lia";
-import { MdDomain, MdEco, MdOutlineStar } from "react-icons/md";
+import {
+  ArrowRightOutlined,
+  HeartOutlined,
+  HomeOutlined,
+  SafetyOutlined,
+  StarOutlined,
+} from "@ant-design/icons";
 import spa from "../../../../assets/spa.png";
 import { HomeGlobalStyle, token } from "../../styles/theme";
 import { useDichVuQuery, type IDichVu } from "./services";
@@ -17,27 +21,27 @@ type ServiceUI = {
 
 const whyItems = [
   {
-    icon: <LiaHandshakeSolid />,
+    icon: <HeartOutlined />,
     title: "Chuyên gia tận tâm",
     desc: "Đội ngũ kỹ thuật viên giàu kinh nghiệm, yêu thương động vật như người thân.",
   },
   {
-    icon: <MdEco />,
+    icon: <SafetyOutlined />,
     title: "Sản phẩm hữu cơ",
     desc: "Cam kết sử dụng 100% dầu gội và dưỡng chất từ thiên nhiên, an toàn tuyệt đối.",
   },
   {
-    icon: <MdDomain />,
+    icon: <HomeOutlined />,
     title: "Không gian hiện đại",
     desc: "Cơ sở vật chất đạt chuẩn 5 sao, thoáng mát và luôn được khử trùng định kỳ.",
   },
   {
-    icon: <MdOutlineStar />,
+    icon: <StarOutlined />,
     title: "Dịch vụ chất lượng cao",
     desc: "Luôn đặt trải nghiệm khách hàng lên hàng đầu với tiêu chuẩn phục vụ chuyên nghiệp.",
   },
   {
-    icon: <MdEco />,
+    icon: <SafetyOutlined />,
     title: "Thân thiện môi trường",
     desc: "Giảm thiểu hóa chất, bảo vệ sức khỏe thú cưng và môi trường.",
   },
@@ -73,13 +77,13 @@ const testimonials = [
 const mapDichVu = (s: IDichVu): ServiceUI => ({
   id: s.id,
   title: s.tenDichVu,
-  desc: s.moTaDichVu,
+  desc: s.moTaDichVu || "",
   price: `từ ${Number(s.giaDichVu).toLocaleString("vi-VN")}đ`,
   img: s.hinhAnhUrl || spa,
 });
 
 export default function TrangChuPage() {
-  const { data, isLoading } = useDichVuQuery({ page: 1, pageSize: 4 });
+  const { data, isLoading } = useDichVuQuery({ Page: 1, PageSize: 4 });
 
   const services: ServiceUI[] =
     data?.data?.map(mapDichVu) ?? [];
@@ -172,7 +176,7 @@ export default function TrangChuPage() {
               <S.TestCard key={i}>
                 <S.Stars>
                   {Array.from({ length: 5 }).map((_, idx) => (
-                    <MdOutlineStar key={idx} />
+                    <StarOutlined key={idx} />
                   ))}
                 </S.Stars>
 

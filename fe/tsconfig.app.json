@@ -21,5 +21,18 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "src/main.tsx",
+    "src/Route.tsx",
+    "src/rootRoute.tsx",
+    "src/config/**/*.ts",
+    "src/lib/**/*.ts",
+    "src/apps/**/*.ts",
+    "src/apps/**/*.tsx",
+    "src/shared/constants/common.ts",
+    "src/shared/constants/index.ts",
+    "src/shared/constants/permissionUser.ts",
+    "src/shared/types/response.type.ts",
+    "src/shared/utils/tokenManager.ts"
+  ]
 }
