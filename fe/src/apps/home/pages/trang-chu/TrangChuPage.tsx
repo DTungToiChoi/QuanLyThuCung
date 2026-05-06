@@ -7,9 +7,9 @@ import {
   SafetyOutlined,
   StarOutlined,
 } from "@ant-design/icons";
-import spa from "../../../../assets/spa.png";
 import { HomeGlobalStyle, token } from "../../styles/theme";
 import { useDichVuQuery, type IDichVu } from "./services";
+import { urlHinhAnh } from "../../../../shared/utils/mediaUrl";
 
 type ServiceUI = {
   id: number;
@@ -79,7 +79,7 @@ const mapDichVu = (s: IDichVu): ServiceUI => ({
   title: s.tenDichVu,
   desc: s.moTaDichVu || "",
   price: `từ ${Number(s.giaDichVu).toLocaleString("vi-VN")}đ`,
-  img: s.hinhAnhUrl || spa,
+  img: urlHinhAnh(s.hinhAnhUrl),
 });
 
 export default function TrangChuPage() {

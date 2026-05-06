@@ -287,7 +287,7 @@ export const TestGrid = styled.div`
   gap: 20px;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 `;
 

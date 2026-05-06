@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import MainLayout from '../../component/MainLayout'
 import {
   CalendarOutlined,
   CheckCircleOutlined,
@@ -6,10 +6,9 @@ import {
   HeartOutlined,
   RightOutlined,
 } from '@ant-design/icons'
-import MainLayout from '../../component/MainLayout'
+
 import {
   Button,
-  Card,
   Container,
   Eyebrow,
   Lead,
@@ -18,217 +17,9 @@ import {
   Section,
   SectionTitle,
 } from '../../component/page-styled'
+
 import { HomeGlobalStyle, token } from '../../styles/theme'
-
-const Shell = styled.div`
-  min-height: 100vh;
-  background: ${token.background};
-`
-
-const Header = styled(Section)`
-  padding-top: 76px;
-  padding-bottom: 38px;
-`
-
-const BookingGrid = styled.div`
-  display: grid;
-  gap: 24px;
-
-  @media (min-width: 980px) {
-    grid-template-columns: 300px minmax(0, 1fr);
-    align-items: start;
-  }
-`
-
-const SidePanel = styled.aside`
-  position: sticky;
-  top: 106px;
-  display: grid;
-  gap: 18px;
-`
-
-const StepList = styled(Card)`
-  padding: 18px;
-`
-
-const Step = styled.div<{ $active?: boolean }>`
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding: 14px;
-  border-left: 4px solid ${({ $active }) => ($active ? token.primary : 'transparent')};
-  border-radius: 8px;
-  background: ${({ $active }) => ($active ? 'rgba(107, 126, 70, 0.1)' : 'transparent')};
-  opacity: ${({ $active }) => ($active ? 1 : 0.55)};
-
-  svg {
-    color: ${({ $active }) => ($active ? token.primary : token.outline)};
-    font-size: 20px;
-  }
-`
-
-const StepLabel = styled.p`
-  margin: 0;
-  color: ${token.primary};
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-`
-
-const StepTitle = styled.p`
-  margin: 2px 0 0;
-  color: ${token.onSurface};
-  font-weight: 700;
-`
-
-const Summary = styled(Card)`
-  padding: 20px;
-`
-
-const SummaryRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 0;
-  color: ${token.onSurfaceVariant};
-
-  strong {
-    color: ${token.onSurface};
-  }
-`
-
-const Total = styled(SummaryRow)`
-  margin-top: 8px;
-  border-top: 1px solid ${token.outlineVariant};
-  color: ${token.onSurface};
-  font-weight: 800;
-
-  strong {
-    color: ${token.primary};
-  }
-`
-
-const MainColumn = styled.div`
-  display: grid;
-  gap: 22px;
-`
-
-const ServiceGrid = styled.div`
-  display: grid;
-  gap: 18px;
-
-  @media (min-width: 760px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-`
-
-const ServiceCard = styled(Card)<{ $selected?: boolean }>`
-  border-color: ${({ $selected }) => ($selected ? token.primary : token.outlineVariant)};
-  box-shadow: ${({ $selected }) => ($selected ? '0 16px 44px rgba(107, 126, 70, 0.16)' : undefined)};
-`
-
-const ServiceImage = styled.img`
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-`
-
-const Body = styled.div`
-  padding: 20px;
-`
-
-const Row = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-`
-
-const CardTitle = styled.h3`
-  margin: 0;
-  color: ${token.onSurface};
-  font-family: 'DM Serif Display', serif;
-  font-size: 24px;
-  font-weight: 400;
-`
-
-const Text = styled.p`
-  margin: 12px 0 18px;
-  color: ${token.onSurfaceVariant};
-  line-height: 1.65;
-`
-
-const Price = styled.strong`
-  color: ${token.primary};
-  white-space: nowrap;
-`
-
-const FormCard = styled(Card)`
-  padding: 24px;
-`
-
-const FormGrid = styled.div`
-  display: grid;
-  gap: 16px;
-
-  @media (min-width: 760px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-`
-
-const Field = styled.label`
-  display: grid;
-  gap: 7px;
-  color: ${token.onSurface};
-  font-weight: 700;
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-    border: 1px solid ${token.outlineVariant};
-    border-radius: 8px;
-    padding: 12px 14px;
-    background: ${token.surfaceContainerLow};
-    color: ${token.onSurface};
-    font: inherit;
-    outline: none;
-  }
-
-  textarea {
-    min-height: 110px;
-    resize: vertical;
-  }
-
-  input:focus,
-  select:focus,
-  textarea:focus {
-    border-color: ${token.primary};
-    box-shadow: 0 0 0 3px rgba(107, 126, 70, 0.14);
-  }
-`
-
-const FeatureGrid = styled.div`
-  display: grid;
-  gap: 16px;
-
-  @media (min-width: 760px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-`
-
-const Feature = styled(Card)`
-  padding: 20px;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  svg {
-    color: ${token.primary};
-    font-size: 28px;
-  }
-`
+import * as S from './styled' // 👈 tách styled ra file riêng
 
 const services = [
   {
@@ -252,143 +43,162 @@ const services = [
   },
 ]
 
+const steps = [
+  { label: 'Bước 1', title: 'Chọn dịch vụ', icon: <CheckCircleOutlined /> },
+  { label: 'Bước 2', title: 'Thông tin thú cưng', icon: <HeartOutlined /> },
+  { label: 'Bước 3', title: 'Chọn thời gian', icon: <CalendarOutlined /> },
+  { label: 'Bước 4', title: 'Xác nhận', icon: <RightOutlined /> },
+]
+
+const features = [
+  {
+    icon: <CheckCircleOutlined />,
+    title: 'Chuyên nghiệp',
+    desc: 'Groomer có kinh nghiệm và quy trình rõ ràng.',
+  },
+  {
+    icon: <HeartOutlined />,
+    title: 'An toàn',
+    desc: 'Sản phẩm phù hợp da nhạy cảm.',
+  },
+  {
+    icon: <CustomerServiceOutlined />,
+    title: 'Hỗ trợ nhanh',
+    desc: 'Tư vấn trước và sau khi hoàn tất dịch vụ.',
+  },
+]
+
 export default function DatLichPage() {
   return (
     <MainLayout>
       <HomeGlobalStyle />
+
       <Page>
-        <Shell>
-          <Header>
+        <S.Shell>
+          <S.Header>
             <Container>
               <Eyebrow>Đặt lịch nhanh</Eyebrow>
               <PageTitle>Chọn dịch vụ và thời gian phù hợp</PageTitle>
               <Lead>
-                Gửi thông tin trước để đội ngũ chuẩn bị đúng dịch vụ, sản phẩm và thời lượng chăm sóc cho thú cưng của
-                bạn.
+                Gửi thông tin trước để đội ngũ chuẩn bị đúng dịch vụ, sản phẩm và thời lượng chăm sóc cho thú cưng của bạn.
               </Lead>
             </Container>
-          </Header>
+          </S.Header>
 
           <Section $bg={token.surfaceContainerLow}>
             <Container>
-              <BookingGrid>
-                <SidePanel>
-                  <StepList>
-                    {[
-                      ['Bước 1', 'Chọn dịch vụ', <CheckCircleOutlined />],
-                      ['Bước 2', 'Thông tin thú cưng', <HeartOutlined />],
-                      ['Bước 3', 'Chọn thời gian', <CalendarOutlined />],
-                      ['Bước 4', 'Xác nhận', <RightOutlined />],
-                    ].map(([label, title, icon], index) => (
-                      <Step key={String(label)} $active={index === 0}>
-                        {icon}
+              <S.BookingGrid>
+
+                {/* LEFT */}
+                <S.SidePanel>
+                  <S.StepList>
+                    {steps.map((step, index) => (
+                      <S.Step key={step.label} $active={index === 0}>
+                        {step.icon}
                         <div>
-                          <StepLabel>{label}</StepLabel>
-                          <StepTitle>{title}</StepTitle>
+                          <S.StepLabel>{step.label}</S.StepLabel>
+                          <S.StepTitle>{step.title}</S.StepTitle>
                         </div>
-                      </Step>
+                      </S.Step>
                     ))}
-                  </StepList>
+                  </S.StepList>
 
-                  <Summary>
-                    <CardTitle style={{ fontSize: 22 }}>Tóm tắt</CardTitle>
-                    <SummaryRow>
+                  <S.Summary>
+                    <S.CardTitle style={{ fontSize: 22 }}>Tóm tắt</S.CardTitle>
+
+                    <S.SummaryRow>
                       Dịch vụ <strong>Cắt tỉa toàn diện</strong>
-                    </SummaryRow>
-                    <SummaryRow>
+                    </S.SummaryRow>
+
+                    <S.SummaryRow>
                       Thú cưng <strong>Chưa nhập</strong>
-                    </SummaryRow>
-                    <Total>
+                    </S.SummaryRow>
+
+                    <S.Total>
                       Tổng cộng <strong>450.000đ</strong>
-                    </Total>
-                  </Summary>
-                </SidePanel>
+                    </S.Total>
+                  </S.Summary>
+                </S.SidePanel>
 
-                <MainColumn>
-                  <FormCard>
+                {/* RIGHT */}
+                <S.MainColumn>
+
+                  {/* SERVICES */}
+                  <S.FormCard>
                     <SectionTitle>Danh sách gói dịch vụ</SectionTitle>
-                    <ServiceGrid>
-                      {services.map((service) => (
-                        <ServiceCard key={service.title} $selected={service.selected}>
-                          <ServiceImage src={service.img} alt={service.title} />
-                          <Body>
-                            <Row>
-                              <CardTitle>{service.title}</CardTitle>
-                              <Price>{service.price}</Price>
-                            </Row>
-                            <Text>{service.desc}</Text>
-                            <Button $variant={service.selected ? undefined : 'outline'}>
-                              {service.selected ? 'Đã chọn' : 'Chọn dịch vụ'}
-                            </Button>
-                          </Body>
-                        </ServiceCard>
-                      ))}
-                    </ServiceGrid>
-                  </FormCard>
 
-                  <FormCard>
+                    <S.ServiceGrid>
+                      {services.map((s) => (
+                        <S.ServiceCard key={s.title} $selected={s.selected}>
+                          <S.ServiceImage src={s.img} alt={s.title} />
+
+                          <S.Body>
+                            <S.Row>
+                              <S.CardTitle>{s.title}</S.CardTitle>
+                              <S.Price>{s.price}</S.Price>
+                            </S.Row>
+
+                            <S.Text>{s.desc}</S.Text>
+
+                            <Button $variant={s.selected ? undefined : 'outline'}>
+                              {s.selected ? 'Đã chọn' : 'Chọn dịch vụ'}
+                            </Button>
+                          </S.Body>
+                        </S.ServiceCard>
+                      ))}
+                    </S.ServiceGrid>
+                  </S.FormCard>
+
+                  {/* FORM */}
+                  <S.FormCard>
                     <SectionTitle>Thông tin đặt lịch</SectionTitle>
-                    <FormGrid>
-                      <Field>
-                        Họ tên
-                        <input placeholder="Nguyễn Văn A" />
-                      </Field>
-                      <Field>
-                        Số điện thoại
-                        <input placeholder="090xxxxxxx" />
-                      </Field>
-                      <Field>
-                        Tên thú cưng
-                        <input placeholder="Milo" />
-                      </Field>
-                      <Field>
+
+                    <S.FormGrid>
+                      <S.Field>Họ tên <input placeholder="Nguyễn Văn A" /></S.Field>
+                      <S.Field>Số điện thoại <input placeholder="090xxxxxxx" /></S.Field>
+                      <S.Field>Tên thú cưng <input placeholder="Milo" /></S.Field>
+
+                      <S.Field>
                         Loại thú cưng
                         <select defaultValue="">
-                          <option value="" disabled>
-                            Chọn loại
-                          </option>
+                          <option value="" disabled>Chọn loại</option>
                           <option>Chó</option>
                           <option>Mèo</option>
                         </select>
-                      </Field>
-                      <Field>
-                        Ngày hẹn
-                        <input type="date" />
-                      </Field>
-                      <Field>
-                        Giờ hẹn
-                        <input type="time" />
-                      </Field>
-                    </FormGrid>
-                    <Field style={{ marginTop: 16 }}>
+                      </S.Field>
+
+                      <S.Field>Ngày hẹn <input type="date" /></S.Field>
+                      <S.Field>Giờ hẹn <input type="time" /></S.Field>
+                    </S.FormGrid>
+
+                    <S.Field style={{ marginTop: 16 }}>
                       Ghi chú
-                      <textarea placeholder="Tình trạng lông, da, tính cách hoặc yêu cầu riêng..." />
-                    </Field>
+                      <textarea placeholder="Tình trạng lông, da, tính cách..." />
+                    </S.Field>
+
                     <div style={{ marginTop: 20 }}>
                       <Button>Xác nhận đặt lịch</Button>
                     </div>
-                  </FormCard>
+                  </S.FormCard>
 
-                  <FeatureGrid>
-                    {[
-                      [<CheckCircleOutlined />, 'Chuyên nghiệp', 'Groomer có kinh nghiệm và quy trình rõ ràng.'],
-                      [<HeartOutlined />, 'An toàn', 'Sản phẩm phù hợp da nhạy cảm của thú cưng.'],
-                      [<CustomerServiceOutlined />, 'Hỗ trợ nhanh', 'Tư vấn trước và sau khi hoàn tất dịch vụ.'],
-                    ].map(([icon, title, text]) => (
-                      <Feature key={String(title)}>
-                        {icon}
+                  {/* FEATURES */}
+                  <S.FeatureGrid>
+                    {features.map((f) => (
+                      <S.Feature key={f.title}>
+                        {f.icon}
                         <div>
-                          <CardTitle style={{ fontSize: 22 }}>{title}</CardTitle>
-                          <Text style={{ marginBottom: 0 }}>{text}</Text>
+                          <S.CardTitle style={{ fontSize: 22 }}>{f.title}</S.CardTitle>
+                          <S.Text style={{ marginBottom: 0 }}>{f.desc}</S.Text>
                         </div>
-                      </Feature>
+                      </S.Feature>
                     ))}
-                  </FeatureGrid>
-                </MainColumn>
-              </BookingGrid>
+                  </S.FeatureGrid>
+
+                </S.MainColumn>
+              </S.BookingGrid>
             </Container>
           </Section>
-        </Shell>
+        </S.Shell>
       </Page>
     </MainLayout>
   )

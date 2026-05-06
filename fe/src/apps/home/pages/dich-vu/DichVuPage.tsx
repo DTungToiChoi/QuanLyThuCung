@@ -102,37 +102,31 @@ const Price = styled.strong`
   font-size: 20px;
 `
 
-const Compare = styled.div`
-  overflow-x: auto;
-  border: 1px solid ${token.outlineVariant};
-  border-radius: 8px;
-  background: ${token.surfaceContainerLowest};
-`
-
-const Table = styled.table`
-  width: 100%;
-  min-width: 620px;
-  border-collapse: collapse;
-
-  th,
-  td {
-    padding: 18px;
-    border-bottom: 1px solid ${token.outlineVariant};
-    text-align: left;
-  }
-
-  th {
-    background: ${token.surfaceContainerHigh};
-    color: ${token.onSurface};
-  }
-
-  td:not(:first-child),
-  th:not(:first-child) {
-    text-align: center;
-  }
-`
-
 const services = [
+  {
+    title: 'Combo tắm gội thảo mộc',
+    tag: 'Tắm & sấy',
+    desc: 'Tắm 2 lần, vệ sinh tai, vắt tuyến hôi, sấy khô, chải tơi lông và xịt nước hoa cao cấp.',
+    time: '60 - 90 phút',
+    price: 'Từ 250.000đ',
+    img: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Cắt tỉa tạo kiểu toàn thân',
+    tag: 'Thẩm mỹ',
+    desc: 'Cắt tỉa theo yêu cầu, tạo kiểu mặt, chân, mông và vệ sinh tai móng kỹ càng.',
+    time: '120 - 180 phút',
+    price: 'Từ 450.000đ',
+    img: 'https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    title: 'Khách sạn thú cưng',
+    tag: 'Lưu trú',
+    desc: 'Phòng riêng sạch sẽ, camera theo dõi, điều hòa và chế độ ăn theo yêu cầu của từng bé.',
+    time: 'Theo ngày',
+    price: 'Từ 200.000đ/ngày',
+    img: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80',
+  },
   {
     title: 'Combo tắm gội thảo mộc',
     tag: 'Tắm & sấy',
@@ -203,36 +197,6 @@ export default function DichVuPage() {
                 </Card>
               ))}
             </Grid>
-          </Container>
-        </Section>
-
-        <Section $bg={token.surfaceContainerLow}>
-          <Container>
-            <SectionTitle>So sánh gói dịch vụ</SectionTitle>
-            <Compare>
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Đặc điểm</th>
-                    <th>Tiêu chuẩn</th>
-                    <th>Premium</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {['Vệ sinh tai & móng', 'Sữa tắm thảo mộc', 'Dưỡng lông Silk Protein', 'Massage thư giãn'].map(
-                    (item, index) => (
-                      <tr key={item}>
-                        <td>{item}</td>
-                        <td>{index < 2 ? <CheckCircleOutlined /> : '-'}</td>
-                        <td>
-                          <CheckCircleOutlined />
-                        </td>
-                      </tr>
-                    ),
-                  )}
-                </tbody>
-              </Table>
-            </Compare>
           </Container>
         </Section>
 

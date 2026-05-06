@@ -1,13 +1,13 @@
-export const normalizeMediaUrl = (url?: string): string => {
-    if (!url) return '';
-    if (url.startsWith('http://') || url.startsWith('https://')) {
-        return url;
-    }
+const API_BASE_URL = "http://localhost:3000";
 
-    const MINIO_BASE_URL = `${import.meta.env.VITE_RESOURCE_URL}`;
-    const cleanPath = url.startsWith('/') ? url.substring(1) : url;
+export const urlHinhAnh = (url?: string | null): string => {
+  if (!url) return "";
 
-    const result = `${MINIO_BASE_URL}${cleanPath}`;
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
 
-    return result;
+  const cleanPath = url.startsWith("/") ? url.slice(1) : url;
+
+  return `${API_BASE_URL}/${cleanPath}`;
 };
