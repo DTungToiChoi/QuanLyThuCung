@@ -12,7 +12,7 @@ export const Section = styled.section<{ $bg?: string }>`
 `
 
 export const Container = styled.div`
-  width: min(1180px, calc(100% - 48px));
+  width: 80%;
   margin: 0 auto;
 `
 

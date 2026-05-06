@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import MainLayout from "../../component/MainLayout";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { LiaHandshakeSolid } from "react-icons/lia";
@@ -300,7 +300,7 @@ const TestGrid = styled.div`
   gap: 20px;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 `;
 
@@ -445,6 +445,14 @@ const testimonials = [
     sub: "Chủ nuôi bé Meo",
     avatarBg: token.tertiaryFixed,
     avatarColor: token.onTertiaryFixed,
+  },
+  {
+    text: '"Spa rất sạch sẽ và thơm. Bé nhà mình sau khi tắm xong nhìn xinh hẳn ra. Nhân viên nhiệt tình và tư vấn rất kỹ!"',
+    initials: "PL",
+    name: "Anh Phúc Lâm",
+    sub: "Chủ nuôi bé Bông",
+    avatarBg: token.primaryFixedDim,
+    avatarColor: token.onPrimaryFixed,
   },
   {
     text: '"Spa rất sạch sẽ và thơm. Bé nhà mình sau khi tắm xong nhìn xinh hẳn ra. Nhân viên nhiệt tình và tư vấn rất kỹ!"',

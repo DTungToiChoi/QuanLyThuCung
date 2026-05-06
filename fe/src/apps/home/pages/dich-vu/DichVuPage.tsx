@@ -35,33 +35,6 @@ const HeroActions = styled.div`
   margin-top: 28px;
 `
 
-const FilterBar = styled.div`
-  position: sticky;
-  top: 83px;
-  z-index: 2;
-  background: ${token.surface};
-  border-bottom: 1px solid ${token.outlineVariant};
-`
-
-const FilterInner = styled(Container)`
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-top: 14px;
-  padding-bottom: 14px;
-`
-
-const FilterChip = styled.button<{ $active?: boolean }>`
-  flex: 0 0 auto;
-  border: 1px solid ${({ $active }) => ($active ? token.primary : token.outlineVariant)};
-  border-radius: 999px;
-  padding: 9px 16px;
-  background: ${({ $active }) => ($active ? token.primary : token.surfaceContainerLow)};
-  color: ${({ $active }) => ($active ? token.onPrimary : token.onSurfaceVariant)};
-  font-weight: 700;
-  cursor: pointer;
-`
-
 const Grid = styled.div`
   display: grid;
   gap: 22px;
@@ -186,8 +159,6 @@ const services = [
   },
 ]
 
-const filters = ['Tất cả dịch vụ', 'Tắm & sấy', 'Cắt tỉa thẩm mỹ', 'Dịch vụ lẻ', 'Khách sạn thú cưng']
-
 export default function DichVuPage() {
   return (
     <MainLayout>
@@ -203,20 +174,9 @@ export default function DichVuPage() {
             </Lead>
             <HeroActions>
               <Button>Đặt lịch ngay</Button>
-              <Button $variant="outline">Xem bảng giá</Button>
             </HeroActions>
           </Container>
         </Hero>
-
-        <FilterBar>
-          <FilterInner>
-            {filters.map((item, index) => (
-              <FilterChip key={item} $active={index === 0}>
-                {item}
-              </FilterChip>
-            ))}
-          </FilterInner>
-        </FilterBar>
 
         <Section>
           <Container>
