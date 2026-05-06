@@ -56,3 +56,14 @@ model DanhMucSanPham {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model DichVu {
+  id          Int      @id @default(autoincrement())
+  tenDichVu   String
+  moTaDichVu  String?
+  giaDichVu   Decimal  @db.Decimal(12, 2)
+  hinhAnhUrl  String?
+  hoatDong    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

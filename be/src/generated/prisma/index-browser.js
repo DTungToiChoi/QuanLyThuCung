@@ -161,6 +161,17 @@ exports.Prisma.DanhMucSanPhamScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.DichVuScalarFieldEnum = {
+  id: 'id',
+  tenDichVu: 'tenDichVu',
+  moTaDichVu: 'moTaDichVu',
+  giaDichVu: 'giaDichVu',
+  hinhAnhUrl: 'hinhAnhUrl',
+  hoatDong: 'hoatDong',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -194,6 +205,12 @@ exports.Prisma.DanhMucSanPhamOrderByRelevanceFieldEnum = {
   moTa: 'moTa',
   hinhAnhUrl: 'hinhAnhUrl'
 };
+
+exports.Prisma.DichVuOrderByRelevanceFieldEnum = {
+  tenDichVu: 'tenDichVu',
+  moTaDichVu: 'moTaDichVu',
+  hinhAnhUrl: 'hinhAnhUrl'
+};
 exports.ChucVu = exports.$Enums.ChucVu = {
   QUAN_LY: 'QUAN_LY',
   BAC_SI: 'BAC_SI'
@@ -203,7 +220,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Role: 'Role',
   SanPham: 'SanPham',
-  DanhMucSanPham: 'DanhMucSanPham'
+  DanhMucSanPham: 'DanhMucSanPham',
+  DichVu: 'DichVu'
 };
 
 /**

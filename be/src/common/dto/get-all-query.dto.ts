@@ -27,4 +27,10 @@ export class GetAllQueryDto {
 
   @ApiPropertyOptional()
   'Query.TenDanhMuc'?: string;
+
+  @ApiPropertyOptional()
+  'Query.TenDichVu'?: string;
+
+  @ApiPropertyOptional()
+  'Query.HinhAnhUrl'?: string;
 }
