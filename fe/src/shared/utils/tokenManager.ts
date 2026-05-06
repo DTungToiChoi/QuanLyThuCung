@@ -1,91 +1,72 @@
-import { LOCAL_STORAGE_KEYS } from "@constants/storageKeys";
-import { decryptDES, encryptDES } from "@utils/desEncryt";
-import { lcStorage } from "@utils/storage";
+const LOCAL_STORAGE_KEYS = {
+  accessToken: 'accessToken',
+  refreshToken: 'refreshToken',
+  roles: 'roles',
+} as const
+
+const getStorageValue = (key: string): string | undefined => {
+  return localStorage.getItem(key) ?? undefined
+}
+
+const setStorageValue = (key: string, value: string): void => {
+  localStorage.setItem(key, value)
+}
 
 const tokenManager = () => {
-  let accessToken: string | undefined = lcStorage.get(
-    LOCAL_STORAGE_KEYS.accessToken
-  );
-  let refreshToken: string | undefined = lcStorage.get(
-    LOCAL_STORAGE_KEYS.refreshToken
-  );
+  let accessToken: string | undefined = getStorageValue(LOCAL_STORAGE_KEYS.accessToken)
+  let refreshToken: string | undefined = getStorageValue(LOCAL_STORAGE_KEYS.refreshToken)
 
   const getRoles = (): string[] | undefined => {
-    const storedValue = lcStorage.get(LOCAL_STORAGE_KEYS.roles);
-    if (!storedValue) return undefined;
+    const storedValue = getStorageValue(LOCAL_STORAGE_KEYS.roles)
+    if (!storedValue) return undefined
 
     try {
-      const value =
-        import.meta.env.NODE_ENV === "development"
-          ? storedValue
-          : decryptDES(storedValue);
-
-      return JSON.parse(value);
+      return JSON.parse(storedValue)
     } catch {
-      return undefined;
+      return undefined
     }
-  };
+  }
 
   const setRoles = (roles: string[]): void => {
-    const value = JSON.stringify(roles);
+    setStorageValue(LOCAL_STORAGE_KEYS.roles, JSON.stringify(roles))
+  }
 
-    const storedValue =
-      import.meta.env.NODE_ENV === "development" ? value : encryptDES(value);
-
-    lcStorage.set(LOCAL_STORAGE_KEYS.roles, storedValue);
-  };
   const getAccessToken = (): string | undefined => {
-    if (!accessToken) return undefined;
-    try {
-      if (import.meta.env.NODE_ENV === "development") {
-        return accessToken;
-      } else {
-        return decryptDES(accessToken);
-      }
-    } catch {
-      return undefined;
-    }
-  };
+    return accessToken
+  }
 
   const setAccessToken = (token: string): void => {
-    if (import.meta.env.NODE_ENV === "development") {
-      accessToken = token;
-    } else {
-      accessToken = encryptDES(token);
-    }
-    lcStorage.set(LOCAL_STORAGE_KEYS.accessToken, accessToken);
-  };
+    accessToken = token
+    setStorageValue(LOCAL_STORAGE_KEYS.accessToken, token)
+  }
 
   const removeAccessToken = (): void => {
-    accessToken = undefined;
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken);
-  };
+    accessToken = undefined
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken)
+  }
 
-  const getRefreshToken = () => {
-    if (!refreshToken) return undefined;
-    if (import.meta.env.NODE_ENV === "development") {
-      return refreshToken;
-    } else {
-      return decryptDES(refreshToken);
-    }
-  };
+  const getRefreshToken = (): string | undefined => {
+    return refreshToken
+  }
 
   const setRefreshToken = (token: string): void => {
-    if (import.meta.env.NODE_ENV === "development") {
-      refreshToken = token;
-    } else {
-      refreshToken = encryptDES(token);
-    }
-    lcStorage.set(LOCAL_STORAGE_KEYS.refreshToken, refreshToken);
-  };
+    refreshToken = token
+    setStorageValue(LOCAL_STORAGE_KEYS.refreshToken, token)
+  }
 
   const removeRefreshToken = (): void => {
-    refreshToken = undefined;
-    localStorage.removeItem(LOCAL_STORAGE_KEYS.refreshToken);
-  };
+    refreshToken = undefined
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.refreshToken)
+  }
+
   const removeAllToken = (): void => {
-    localStorage.clear();
-  };
+    accessToken = undefined
+    refreshToken = undefined
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.accessToken)
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.refreshToken)
+    localStorage.removeItem(LOCAL_STORAGE_KEYS.roles)
+  }
+
   return {
     getRoles,
     setRoles,
@@ -96,7 +77,7 @@ const tokenManager = () => {
     setRefreshToken,
     removeRefreshToken,
     removeAllToken,
-  };
-};
+  }
+}
 
-export default tokenManager();
+export default tokenManager()

@@ -43,6 +43,7 @@ model DanhMucSanPham {
   id         Int       @id @default(autoincrement())
   tenDanhMuc String    @unique
   moTa       String?
+  hinhAnhUrl String?
   hoatDong   Boolean   @default(true)
   sanPhams   SanPham[]
   createdAt  DateTime  @default(now())

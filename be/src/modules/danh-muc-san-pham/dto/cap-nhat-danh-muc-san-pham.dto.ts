@@ -8,5 +8,8 @@ export class CapNhatDanhMucSanPhamDto {
   moTa?: string;
 
   @ApiPropertyOptional()
+  hinhAnhUrl?: string;
+
+  @ApiPropertyOptional()
   hoatDong?: boolean;
 }

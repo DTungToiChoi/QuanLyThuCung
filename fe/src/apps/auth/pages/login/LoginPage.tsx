@@ -1,14 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
-import { Form, Input, Button, Card, Typography, message } from 'antd'
-import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { Button, Card, Form, Input, Typography, message } from 'antd'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
 import bgLogin from '/src/assets/bg-login.png'
+import logo from '/src/assets/logo-removebg-preview.png'
 
 import { QUAN_LY_NHAN_VIEN } from '../../../admin/constants'
-import { authApi, type LoginPayload } from '../../../../shared/api'
+import { authApi, type LoginPayload } from '../../../../shared/services/auth'
 import { NHAN_VIEN_HOME } from '../../../../shared/constants'
-import { tokenManager } from '../../../../shared/tokenManager'
+import tokenManager from '../../../../shared/utils/tokenManager'
 
 const { Title, Text } = Typography
 
@@ -105,7 +106,7 @@ const StyledPassword = styled(Input.Password)`
   font-size: 16px;
 `
 
-export default function Login() {
+export default function LoginPage() {
   const navigate = useNavigate()
 
   const loginMutation = useMutation({
@@ -116,23 +117,22 @@ export default function Login() {
         return
       }
 
-      tokenManager.setTokens(response.data)
+      const roles = response.data.roles.map((role) => role.toUpperCase())
 
-      if (response.data.roles.includes('ADMIN')) {
+      tokenManager.setAccessToken(response.data.accessToken)
+      tokenManager.setRefreshToken(response.data.refreshToken)
+      tokenManager.setRoles(roles)
+
+      if (roles.includes('ADMIN')) {
         await navigate({ to: QUAN_LY_NHAN_VIEN })
         return
       }
 
-      if (response.data.roles.includes('NHANVIEN')) {
+      if (roles.includes('NHANVIEN') || roles.includes('USER')) {
         await navigate({ to: NHAN_VIEN_HOME })
         return
       }
 
-      if (response.data.roles.includes('USER')) {
-        await navigate({ to: NHAN_VIEN_HOME })
-        return
-      }
-      
       message.error('Tài khoản chưa được phân quyền phù hợp')
     },
     onError: () => {
@@ -145,7 +145,7 @@ export default function Login() {
       <Container>
         <StyledCard>
           <LogoSection>
-            <img src="/src/assets/logo-removebg-preview.png" alt="Spa Thú Cưng Trang Xinh" />
+            <img src={logo} alt="Spa Thú Cưng Trang Xinh" />
             <Title level={1} className="brand-main">SPA THÚ CƯNG</Title>
             <Title level={3} className="brand-sub">TRANG XINH</Title>
             <Text type="secondary" style={{ fontSize: 16 }}>
@@ -165,7 +165,7 @@ export default function Login() {
             >
               <StyledInput
                 prefix={<UserOutlined style={{ color: '#6b7e46' }} />}
-                placeholder="nv02"
+                placeholder="admin"
               />
             </Form.Item>
 

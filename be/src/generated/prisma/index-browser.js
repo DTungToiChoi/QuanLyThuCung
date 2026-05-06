@@ -153,6 +153,7 @@ exports.Prisma.DanhMucSanPhamScalarFieldEnum = {
   id: 'id',
   tenDanhMuc: 'tenDanhMuc',
   moTa: 'moTa',
+  hinhAnhUrl: 'hinhAnhUrl',
   hoatDong: 'hoatDong',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -187,7 +188,8 @@ exports.Prisma.SanPhamOrderByRelevanceFieldEnum = {
 
 exports.Prisma.DanhMucSanPhamOrderByRelevanceFieldEnum = {
   tenDanhMuc: 'tenDanhMuc',
-  moTa: 'moTa'
+  moTa: 'moTa',
+  hinhAnhUrl: 'hinhAnhUrl'
 };
 
 

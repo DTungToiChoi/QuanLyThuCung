@@ -7,6 +7,7 @@ import { DanhMucSanPhamModule } from './modules/danh-muc-san-pham/danh-muc-san-p
 import { EmployeesModule } from './modules/employees/employees.module';
 import { MailModule } from './modules/mail/mail.module';
 import { SanPhamModule } from './modules/san-pham/san-pham.module';
+import { UploadModule } from './modules/upload/upload.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SanPhamModule } from './modules/san-pham/san-pham.module';
     EmployeesModule,
     DanhMucSanPhamModule,
     SanPhamModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

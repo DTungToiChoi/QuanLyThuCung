@@ -65,6 +65,7 @@ export class DanhMucSanPhamService {
       data: {
         tenDanhMuc: dto.tenDanhMuc,
         moTa: dto.moTa,
+        hinhAnhUrl: dto.hinhAnhUrl,
         hoatDong: dto.hoatDong ?? true,
       },
     });
@@ -83,6 +84,7 @@ export class DanhMucSanPhamService {
       data: {
         tenDanhMuc: dto.tenDanhMuc,
         moTa: dto.moTa,
+        hinhAnhUrl: dto.hinhAnhUrl,
         hoatDong: dto.hoatDong,
       },
     });

@@ -8,5 +8,8 @@ export class TaoDanhMucSanPhamDto {
   moTa?: string;
 
   @ApiPropertyOptional()
+  hinhAnhUrl?: string;
+
+  @ApiPropertyOptional()
   hoatDong?: boolean;
 }

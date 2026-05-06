@@ -4246,6 +4246,7 @@ export namespace Prisma {
     id: number | null
     tenDanhMuc: string | null
     moTa: string | null
+    hinhAnhUrl: string | null
     hoatDong: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4255,6 +4256,7 @@ export namespace Prisma {
     id: number | null
     tenDanhMuc: string | null
     moTa: string | null
+    hinhAnhUrl: string | null
     hoatDong: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -4264,6 +4266,7 @@ export namespace Prisma {
     id: number
     tenDanhMuc: number
     moTa: number
+    hinhAnhUrl: number
     hoatDong: number
     createdAt: number
     updatedAt: number
@@ -4283,6 +4286,7 @@ export namespace Prisma {
     id?: true
     tenDanhMuc?: true
     moTa?: true
+    hinhAnhUrl?: true
     hoatDong?: true
     createdAt?: true
     updatedAt?: true
@@ -4292,6 +4296,7 @@ export namespace Prisma {
     id?: true
     tenDanhMuc?: true
     moTa?: true
+    hinhAnhUrl?: true
     hoatDong?: true
     createdAt?: true
     updatedAt?: true
@@ -4301,6 +4306,7 @@ export namespace Prisma {
     id?: true
     tenDanhMuc?: true
     moTa?: true
+    hinhAnhUrl?: true
     hoatDong?: true
     createdAt?: true
     updatedAt?: true
@@ -4397,6 +4403,7 @@ export namespace Prisma {
     id: number
     tenDanhMuc: string
     moTa: string | null
+    hinhAnhUrl: string | null
     hoatDong: boolean
     createdAt: Date
     updatedAt: Date
@@ -4425,6 +4432,7 @@ export namespace Prisma {
     id?: boolean
     tenDanhMuc?: boolean
     moTa?: boolean
+    hinhAnhUrl?: boolean
     hoatDong?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -4438,12 +4446,13 @@ export namespace Prisma {
     id?: boolean
     tenDanhMuc?: boolean
     moTa?: boolean
+    hinhAnhUrl?: boolean
     hoatDong?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type DanhMucSanPhamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenDanhMuc" | "moTa" | "hoatDong" | "createdAt" | "updatedAt", ExtArgs["result"]["danhMucSanPham"]>
+  export type DanhMucSanPhamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tenDanhMuc" | "moTa" | "hinhAnhUrl" | "hoatDong" | "createdAt" | "updatedAt", ExtArgs["result"]["danhMucSanPham"]>
   export type DanhMucSanPhamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sanPhams?: boolean | DanhMucSanPham$sanPhamsArgs<ExtArgs>
     _count?: boolean | DanhMucSanPhamCountOutputTypeDefaultArgs<ExtArgs>
@@ -4458,6 +4467,7 @@ export namespace Prisma {
       id: number
       tenDanhMuc: string
       moTa: string | null
+      hinhAnhUrl: string | null
       hoatDong: boolean
       createdAt: Date
       updatedAt: Date
@@ -4834,6 +4844,7 @@ export namespace Prisma {
     readonly id: FieldRef<"DanhMucSanPham", 'Int'>
     readonly tenDanhMuc: FieldRef<"DanhMucSanPham", 'String'>
     readonly moTa: FieldRef<"DanhMucSanPham", 'String'>
+    readonly hinhAnhUrl: FieldRef<"DanhMucSanPham", 'String'>
     readonly hoatDong: FieldRef<"DanhMucSanPham", 'Boolean'>
     readonly createdAt: FieldRef<"DanhMucSanPham", 'DateTime'>
     readonly updatedAt: FieldRef<"DanhMucSanPham", 'DateTime'>
@@ -5283,6 +5294,7 @@ export namespace Prisma {
     id: 'id',
     tenDanhMuc: 'tenDanhMuc',
     moTa: 'moTa',
+    hinhAnhUrl: 'hinhAnhUrl',
     hoatDong: 'hoatDong',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -5335,7 +5347,8 @@ export namespace Prisma {
 
   export const DanhMucSanPhamOrderByRelevanceFieldEnum: {
     tenDanhMuc: 'tenDanhMuc',
-    moTa: 'moTa'
+    moTa: 'moTa',
+    hinhAnhUrl: 'hinhAnhUrl'
   };
 
   export type DanhMucSanPhamOrderByRelevanceFieldEnum = (typeof DanhMucSanPhamOrderByRelevanceFieldEnum)[keyof typeof DanhMucSanPhamOrderByRelevanceFieldEnum]
@@ -5597,6 +5610,7 @@ export namespace Prisma {
     id?: IntFilter<"DanhMucSanPham"> | number
     tenDanhMuc?: StringFilter<"DanhMucSanPham"> | string
     moTa?: StringNullableFilter<"DanhMucSanPham"> | string | null
+    hinhAnhUrl?: StringNullableFilter<"DanhMucSanPham"> | string | null
     hoatDong?: BoolFilter<"DanhMucSanPham"> | boolean
     createdAt?: DateTimeFilter<"DanhMucSanPham"> | Date | string
     updatedAt?: DateTimeFilter<"DanhMucSanPham"> | Date | string
@@ -5607,6 +5621,7 @@ export namespace Prisma {
     id?: SortOrder
     tenDanhMuc?: SortOrder
     moTa?: SortOrderInput | SortOrder
+    hinhAnhUrl?: SortOrderInput | SortOrder
     hoatDong?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5621,6 +5636,7 @@ export namespace Prisma {
     OR?: DanhMucSanPhamWhereInput[]
     NOT?: DanhMucSanPhamWhereInput | DanhMucSanPhamWhereInput[]
     moTa?: StringNullableFilter<"DanhMucSanPham"> | string | null
+    hinhAnhUrl?: StringNullableFilter<"DanhMucSanPham"> | string | null
     hoatDong?: BoolFilter<"DanhMucSanPham"> | boolean
     createdAt?: DateTimeFilter<"DanhMucSanPham"> | Date | string
     updatedAt?: DateTimeFilter<"DanhMucSanPham"> | Date | string
@@ -5631,6 +5647,7 @@ export namespace Prisma {
     id?: SortOrder
     tenDanhMuc?: SortOrder
     moTa?: SortOrderInput | SortOrder
+    hinhAnhUrl?: SortOrderInput | SortOrder
     hoatDong?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5648,6 +5665,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"DanhMucSanPham"> | number
     tenDanhMuc?: StringWithAggregatesFilter<"DanhMucSanPham"> | string
     moTa?: StringNullableWithAggregatesFilter<"DanhMucSanPham"> | string | null
+    hinhAnhUrl?: StringNullableWithAggregatesFilter<"DanhMucSanPham"> | string | null
     hoatDong?: BoolWithAggregatesFilter<"DanhMucSanPham"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"DanhMucSanPham"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"DanhMucSanPham"> | Date | string
@@ -5857,6 +5875,7 @@ export namespace Prisma {
   export type DanhMucSanPhamCreateInput = {
     tenDanhMuc: string
     moTa?: string | null
+    hinhAnhUrl?: string | null
     hoatDong?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5867,6 +5886,7 @@ export namespace Prisma {
     id?: number
     tenDanhMuc: string
     moTa?: string | null
+    hinhAnhUrl?: string | null
     hoatDong?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5876,6 +5896,7 @@ export namespace Prisma {
   export type DanhMucSanPhamUpdateInput = {
     tenDanhMuc?: StringFieldUpdateOperationsInput | string
     moTa?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhAnhUrl?: NullableStringFieldUpdateOperationsInput | string | null
     hoatDong?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5886,6 +5907,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tenDanhMuc?: StringFieldUpdateOperationsInput | string
     moTa?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhAnhUrl?: NullableStringFieldUpdateOperationsInput | string | null
     hoatDong?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5896,6 +5918,7 @@ export namespace Prisma {
     id?: number
     tenDanhMuc: string
     moTa?: string | null
+    hinhAnhUrl?: string | null
     hoatDong?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5904,6 +5927,7 @@ export namespace Prisma {
   export type DanhMucSanPhamUpdateManyMutationInput = {
     tenDanhMuc?: StringFieldUpdateOperationsInput | string
     moTa?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhAnhUrl?: NullableStringFieldUpdateOperationsInput | string | null
     hoatDong?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5913,6 +5937,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tenDanhMuc?: StringFieldUpdateOperationsInput | string
     moTa?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhAnhUrl?: NullableStringFieldUpdateOperationsInput | string | null
     hoatDong?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6286,6 +6311,7 @@ export namespace Prisma {
     id?: SortOrder
     tenDanhMuc?: SortOrder
     moTa?: SortOrder
+    hinhAnhUrl?: SortOrder
     hoatDong?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6299,6 +6325,7 @@ export namespace Prisma {
     id?: SortOrder
     tenDanhMuc?: SortOrder
     moTa?: SortOrder
+    hinhAnhUrl?: SortOrder
     hoatDong?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6308,6 +6335,7 @@ export namespace Prisma {
     id?: SortOrder
     tenDanhMuc?: SortOrder
     moTa?: SortOrder
+    hinhAnhUrl?: SortOrder
     hoatDong?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6787,6 +6815,7 @@ export namespace Prisma {
   export type DanhMucSanPhamCreateWithoutSanPhamsInput = {
     tenDanhMuc: string
     moTa?: string | null
+    hinhAnhUrl?: string | null
     hoatDong?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6796,6 +6825,7 @@ export namespace Prisma {
     id?: number
     tenDanhMuc: string
     moTa?: string | null
+    hinhAnhUrl?: string | null
     hoatDong?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6820,6 +6850,7 @@ export namespace Prisma {
   export type DanhMucSanPhamUpdateWithoutSanPhamsInput = {
     tenDanhMuc?: StringFieldUpdateOperationsInput | string
     moTa?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhAnhUrl?: NullableStringFieldUpdateOperationsInput | string | null
     hoatDong?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6829,6 +6860,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tenDanhMuc?: StringFieldUpdateOperationsInput | string
     moTa?: NullableStringFieldUpdateOperationsInput | string | null
+    hinhAnhUrl?: NullableStringFieldUpdateOperationsInput | string | null
     hoatDong?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

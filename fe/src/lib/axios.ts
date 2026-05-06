@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ENV } from '../config/env'
-import { tokenManager } from '../shared/tokenManager'
+import tokenManager from '../shared/utils/tokenManager'
 
 const api = axios.create({
   baseURL: ENV.API_URL,
@@ -21,7 +21,7 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response?.status === 401) {
       // TODO: add refresh token flow later.
-      tokenManager.clearTokens()
+      tokenManager.removeAllToken()
     }
 
     return Promise.reject(error)
