@@ -6,6 +6,16 @@
     "module": "esnext",
     "types": ["vite/client"],
     "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@configs/*": ["src/config/*"],
+      "@shared/*": ["src/shared/*"],
+      "@utils/*": ["src/shared/utils/*"],
+      "@constants/*": ["src/shared/constants/*"],
+      "@assets/*": ["src/assets/*"],
+      "@apps/*": ["src/apps/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -22,17 +32,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src/main.tsx",
-    "src/Route.tsx",
-    "src/rootRoute.tsx",
-    "src/config/**/*.ts",
-    "src/lib/**/*.ts",
-    "src/apps/**/*.ts",
-    "src/apps/**/*.tsx",
-    "src/shared/constants/common.ts",
-    "src/shared/constants/index.ts",
-    "src/shared/constants/permissionUser.ts",
-    "src/shared/types/response.type.ts",
-    "src/shared/utils/tokenManager.ts"
+    "src/**/*"
   ]
 }
