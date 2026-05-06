@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "surface": "#fcf9f8",
+                    "on-secondary-fixed-variant": "#004785",
+                    "inverse-primary": "#50dad1",
+                    "inverse-on-surface": "#f3f0ef",
+                    "tertiary": "#586153",
+                    "primary-fixed": "#72f7ed",
+                    "surface-container": "#f0eded",
+                    "background": "#fcf9f8",
+                    "outline": "#6c7a78",
+                    "surface-container-low": "#f6f3f2",
+                    "on-primary-container": "#003e3a",
+                    "tertiary-fixed-dim": "#c0c9b9",
+                    "primary-fixed-dim": "#50dad1",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#001c3a",
+                    "on-secondary-container": "#fefcff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#30392d",
+                    "on-background": "#1b1c1c",
+                    "surface-dim": "#dcd9d9",
+                    "on-tertiary-fixed-variant": "#41493c",
+                    "on-surface": "#1b1c1c",
+                    "outline-variant": "#bbc9c7",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "inverse-surface": "#303030",
+                    "primary-container": "#00b2a9",
+                    "on-tertiary-fixed": "#161e13",
+                    "surface-container-highest": "#e4e2e1",
+                    "secondary-container": "#0075d5",
+                    "primary": "#006a64",
+                    "surface-tint": "#006a64",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "tertiary-container": "#99a292",
+                    "surface-container-high": "#eae7e7",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "secondary-fixed": "#d4e3ff",
+                    "secondary": "#005daa",
+                    "tertiary-fixed": "#dce5d4",
+                    "on-primary-fixed-variant": "#00504b",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#00201e",
+                    "on-surface-variant": "#3c4948",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-lg": "24px",
+                    "gutter": "16px",
+                    "unit": "4px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h1": ["Inter"],
+                    "h3": ["Inter"],
+                    "h2": ["Inter"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "h1": ["38px", {"lineHeight": "46px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
+<div class="flex justify-between items-center h-16 px-container-padding max-w-7xl mx-auto">
+<div class="text-h3 font-h3 text-primary">Spa Trang Xinh</div>
+<div class="hidden md:flex items-center space-x-gutter">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Trang chủ</a>
+<a class="text-primary border-b-2 border-primary font-bold pb-1 font-body-md" href="#">Dịch vụ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Đặt lịch</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Tra cứu</a>
+</div>
+<button class="bg-primary text-on-primary px-stack-md py-stack-sm rounded-lg hover:opacity-80 transition-opacity font-label-sm">
+                Đăng nhập
+            </button>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative h-[400px] flex items-center overflow-hidden bg-surface-container-low">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40" data-alt="A professional pet grooming salon interior with clean white surfaces and teal accents. A fluffy white Samoyed dog is being pampered with soft, natural lighting filtering through large windows. The atmosphere is serene, high-end, and clinical yet warm, reflecting a premium Corporate Modern aesthetic with a professional care focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4wWoCzrcVXBhFpaYLoIqtEI4O-PyQyXJprwNKJbrgnKv8V58uF02VWBFFLqMgkJvQJrzVoduBftjogeYMtsTPoxFwp9dJKbzQ1xvM5jbVwcY35UemRlXshGJjyiIto2EbJTxxLw3QEaWZ-QQfFHATOSqbr0NYnXqVjjOWsvEFofwHajrVxgqu5lC7UpX5xpaFJ149yARW4eio4-L11OoXYZVjfUAOmCNJt6zVulFmjMHbSFmKYDw6TC004Kdz2T4zbGhJJIjmuWs"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-container-padding w-full">
+<div class="max-w-2xl">
+<h1 class="font-h1 text-h1 text-on-surface mb-stack-md">Dịch vụ Chăm sóc Thú cưng</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-stack-lg">
+                        Mang đến trải nghiệm thư giãn đẳng cấp nhất cho bé yêu của bạn với quy trình chăm sóc chuyên nghiệp, tận tâm từ đội ngũ chuyên gia tại Spa Trang Xinh.
+                    </p>
+<button class="bg-primary text-on-primary px-8 py-3 rounded-xl font-h3 text-body-lg shadow-sm hover:shadow-md transition-all">
+                        Khám phá ngay
+                    </button>
+</div>
+</div>
+</section>
+<!-- Category Navigation -->
+<section class="bg-surface sticky top-16 z-40 border-b border-outline-variant">
+<div class="max-w-7xl mx-auto px-container-padding">
+<div class="flex overflow-x-auto no-scrollbar space-x-gutter py-stack-md">
+<button class="whitespace-nowrap px-stack-md py-stack-sm rounded-full bg-primary text-on-primary font-label-sm">Tất cả dịch vụ</button>
+<button class="whitespace-nowrap px-stack-md py-stack-sm rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-sm">Tắm &amp; Sấy</button>
+<button class="whitespace-nowrap px-stack-md py-stack-sm rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-sm">Cắt tỉa thẩm mỹ</button>
+<button class="whitespace-nowrap px-stack-md py-stack-sm rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-sm">Dịch vụ lẻ</button>
+<button class="whitespace-nowrap px-stack-md py-stack-sm rounded-full bg-surface-container-high text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors font-label-sm">Khách sạn thú cưng</button>
+</div>
+</div>
+</section>
+<!-- Service Catalog -->
+<section class="py-stack-lg bg-surface">
+<div class="max-w-7xl mx-auto px-container-padding">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Service Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-all group">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of a small brown poodle receiving a herb-infused bubble bath in a modern grooming tub. Soft hands gently massage the soapy fur, with floating bubbles and a calming teal-tinted lighting. The image captures a sense of professional hygiene and compassionate animal care in a bright, clean spa environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcnevsMiw4D5iyvkettSDRAPFfrPaWvI4U8sNTU5O0A7i9H1R7Nm3OEQNIJNZPrKdkRf-JAZ1RS1pGS1mKxT6bkLwFYtqkDSy7CvLgtRogcpvz0DAdCzRY166gTPlKyg-DtyvUOOQ98WJ5piINQZjNVAHUnKGzxfqe-XpGWQP-oYRC3PDChlXacUPbrrsVHGeJlVXycPNrA43ogWQv67MCCWhTGZAD5Lh4uJ6Nl_dqXkD9DrHkj04a9GOUhu2TCrWMzjTs08DxptU"/>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-stack-sm">
+<h3 class="font-h3 text-body-lg text-primary">Combo Tắm Gội Thảo Mộc</h3>
+<span class="bg-primary-container text-on-primary-container text-label-sm px-2 py-0.5 rounded">Tắm &amp; Sấy</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-stack-md h-12 overflow-hidden">
+                                Tắm 2 lần, vắt tuyến hôi, sấy khô, chải tơi lông và xịt nước hoa cao cấp.
+                            </p>
+<div class="flex items-center text-label-sm text-outline mb-stack-md">
+<span class="material-symbols-outlined text-[18px] mr-1">schedule</span>
+                                60 - 90 phút
+                            </div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-h2 text-primary text-body-lg">Từ 250.000đ</span>
+<button class="bg-primary text-on-primary px-stack-md py-stack-sm rounded-lg font-label-sm hover:opacity-90 transition-opacity">Đặt lịch ngay</button>
+</div>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-all group">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A skilled groomer carefully using professional scissors to style the facial fur of a Bichon Frise. The dog is sitting patiently on a clean white grooming table. The background is a organized wall of grooming tools in a modern, brightly lit pet salon with a calm and professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoOA5NlOzgHxA42zNrisAOVNR5TFZOfe7rHz31HRrnpIW2l-fikA2iKuswnp8-WtM_OMaBHduHyoMDXwmkp4HEReXzO1n3htr1VgmBs9wDvsycqZPOmMDhtwHqQy4qAi1M54PqULosDIYsUYRY_58eGnYDZ4atz358-v75mednvCQtJdH83aVgp3ZVUTZIrqlt1WLa0NHpexcVib1YFkVOZUizFXpxR8G-c33g-XwcX8-FcNtPWz-9EOZ9hx81e0v2lBpfhXKmcdU"/>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-stack-sm">
+<h3 class="font-h3 text-body-lg text-primary">Cắt Tỉa Tạo Kiểu Toàn Thân</h3>
+<span class="bg-secondary-container text-on-secondary-container text-label-sm px-2 py-0.5 rounded">Thẩm mỹ</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-stack-md h-12 overflow-hidden">
+                                Cắt tỉa theo yêu cầu, tạo kiểu mông, mặt và chân. Đã bao gồm vệ sinh tai.
+                            </p>
+<div class="flex items-center text-label-sm text-outline mb-stack-md">
+<span class="material-symbols-outlined text-[18px] mr-1">schedule</span>
+                                120 - 180 phút
+                            </div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-h2 text-primary text-body-lg">Từ 450.000đ</span>
+<button class="bg-primary text-on-primary px-stack-md py-stack-sm rounded-lg font-label-sm hover:opacity-90 transition-opacity">Đặt lịch ngay</button>
+</div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-all group">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A luxurious pet hotel suite featuring a cozy wooden bed with a soft pillow, a ceramic water bowl, and a small cat resting comfortably. The room has soft ambient lighting, clean pastel walls, and a large window looking out onto a green space, conveying safety, comfort, and high-quality hospitality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQrYTqAq1jbotsTswTVhYzAVvJzil-sNIj0GP_BagtcZvRT-y6_VHdZZHwqxO-Uos3x0Ix6G70Xkgowy_zIWBhVMf76owwXTl4yTY9Wj8hHGtuM0XghrJMGNxJgeMnc3dC7yVDg_mFPaiIy9KkP6pTMVl-9HAazvLJyFLENxaV3Jk2Lg6O5BEf0ROoMHsmdctQGMOnoj3juVFM6ALlVCl3ZCl77zMg5fgFl56c-d0YEfa2WnHtbB0fQ2e5ezGmrbMcQDw7qBYMn0k"/>
+</div>
+<div class="p-stack-md">
+<div class="flex justify-between items-start mb-stack-sm">
+<h3 class="font-h3 text-body-lg text-primary">Khách Sạn Suite 5 Sao</h3>
+<span class="bg-tertiary-container text-on-tertiary-container text-label-sm px-2 py-0.5 rounded">Khách sạn</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-stack-md h-12 overflow-hidden">
+                                Phòng riêng máy lạnh 24/7, camera theo dõi, chế độ ăn dinh dưỡng riêng.
+                            </p>
+<div class="flex items-center text-label-sm text-outline mb-stack-md">
+<span class="material-symbols-outlined text-[18px] mr-1">schedule</span>
+                                Theo ngày
+                            </div>
+<div class="flex items-center justify-between mt-auto">
+<span class="font-h2 text-primary text-body-lg">Từ 200.000đ/ngày</span>
+<button class="bg-primary text-on-primary px-stack-md py-stack-sm rounded-lg font-label-sm hover:opacity-90 transition-opacity">Đặt lịch ngay</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Table -->
+<section class="py-stack-lg bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-container-padding">
+<h2 class="font-h2 text-h2 text-center mb-stack-lg">Bảng so sánh các gói dịch vụ</h2>
+<div class="overflow-x-auto bg-surface border border-outline-variant rounded-xl">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="p-stack-md text-left font-label-sm border-b border-outline-variant">Đặc điểm</th>
+<th class="p-stack-md text-center font-label-sm border-b border-outline-variant text-primary">Gói Tiêu chuẩn</th>
+<th class="p-stack-md text-center font-label-sm border-b border-outline-variant text-secondary">Gói Premium</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hover:bg-primary-container/10 transition-colors">
+<td class="p-stack-md border-b border-outline-variant font-body-md">Vệ sinh tai &amp; Móng</td>
+<td class="p-stack-md border-b border-outline-variant text-center text-primary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+<td class="p-stack-md border-b border-outline-variant text-center text-secondary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+</tr>
+<tr class="hover:bg-primary-container/10 transition-colors">
+<td class="p-stack-md border-b border-outline-variant font-body-md">Sữa tắm thảo mộc cao cấp</td>
+<td class="p-stack-md border-b border-outline-variant text-center text-primary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+<td class="p-stack-md border-b border-outline-variant text-center text-secondary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+</tr>
+<tr class="hover:bg-primary-container/10 transition-colors">
+<td class="p-stack-md border-b border-outline-variant font-body-md">Dưỡng lông Silk Protein</td>
+<td class="p-stack-md border-b border-outline-variant text-center text-outline-variant"><span class="material-symbols-outlined">cancel</span></td>
+<td class="p-stack-md border-b border-outline-variant text-center text-secondary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+</tr>
+<tr class="hover:bg-primary-container/10 transition-colors">
+<td class="p-stack-md border-b border-outline-variant font-body-md">Massage thư giãn 15 phút</td>
+<td class="p-stack-md border-b border-outline-variant text-center text-outline-variant"><span class="material-symbols-outlined">cancel</span></td>
+<td class="p-stack-md border-b border-outline-variant text-center text-secondary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+</tr>
+<tr class="hover:bg-primary-container/10 transition-colors">
+<td class="p-stack-md border-b border-outline-variant font-body-md">Chụp ảnh kỷ niệm</td>
+<td class="p-stack-md border-b border-outline-variant text-center text-outline-variant"><span class="material-symbols-outlined">cancel</span></td>
+<td class="p-stack-md border-b border-outline-variant text-center text-secondary"><span class="material-symbols-outlined" data-weight="fill">check_circle</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-stack-lg bg-surface">
+<div class="max-w-4xl mx-auto px-container-padding">
+<h2 class="font-h2 text-h2 text-center mb-stack-lg">Câu hỏi thường gặp</h2>
+<div class="space-y-stack-md">
+<div class="p-stack-md border border-outline-variant rounded-lg bg-surface-container-lowest">
+<h4 class="font-h3 text-body-lg text-on-surface mb-stack-sm flex justify-between items-center cursor-pointer">
+                            Bao lâu thì nên tắm cho bé?
+                            <span class="material-symbols-outlined">expand_more</span>
+</h4>
+<p class="font-body-md text-on-surface-variant">
+                            Tùy vào giống chó/mèo và môi trường sống, thông thường nên tắm 1 tuần 1 lần để đảm bảo vệ sinh và sức khỏe làn da. Đối với bé ở trong nhà hoàn toàn, có thể kéo dài 10-14 ngày.
+                        </p>
+</div>
+<div class="p-stack-md border border-outline-variant rounded-lg bg-surface-container-lowest">
+<h4 class="font-h3 text-body-lg text-on-surface mb-stack-sm flex justify-between items-center cursor-pointer">
+                            Cần chuẩn bị gì trước khi đến?
+                            <span class="material-symbols-outlined">expand_more</span>
+</h4>
+<p class="font-body-md text-on-surface-variant">
+                            Bạn nên mang theo sổ tiêm phòng nếu là lần đầu đến. Đảm bảo bé không ăn quá no trước khi tắm/cắt tỉa 2 tiếng để tránh nôn trớ khi thao tác.
+                        </p>
+</div>
+<div class="p-stack-md border border-outline-variant rounded-lg bg-surface-container-lowest">
+<h4 class="font-h3 text-body-lg text-on-surface mb-stack-sm flex justify-between items-center cursor-pointer">
+                            Spa có dịch vụ đưa đón không?
+                            <span class="material-symbols-outlined">expand_more</span>
+</h4>
+<p class="font-body-md text-on-surface-variant">
+                            Hiện tại Spa Trang Xinh có hỗ trợ đưa đón tận nơi trong bán kính 5km cho các gói Combo Premium. Vui lòng liên hệ hotline để được sắp xếp lịch.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-20 bg-primary-container text-on-primary-container relative overflow-hidden">
+<div class="absolute right-0 bottom-0 opacity-10">
+<span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'FILL' 1;">pets</span>
+</div>
+<div class="max-w-7xl mx-auto px-container-padding text-center relative z-10">
+<h2 class="font-h2 text-h2 mb-stack-md">Sẵn sàng để bé yêu được tỏa sáng?</h2>
+<p class="font-body-lg text-body-lg mb-stack-lg max-w-xl mx-auto">
+                    Đặt lịch ngay hôm nay để nhận ưu đãi 10% cho khách hàng mới và trải nghiệm dịch vụ chuẩn 5 sao tại Spa Trang Xinh.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-gutter">
+<button class="bg-on-primary-container text-primary-container px-8 py-3 rounded-full font-h3 text-body-lg shadow-lg hover:bg-surface-container-lowest transition-colors">
+                        Đặt lịch online ngay
+                    </button>
+<button class="border-2 border-on-primary-container text-on-primary-container px-8 py-3 rounded-full font-h3 text-body-lg hover:bg-on-primary-container hover:text-primary-container transition-all">
+                        Liên hệ tư vấn
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center py-stack-lg px-container-padding max-w-7xl mx-auto">
+<div class="mb-stack-md md:mb-0">
+<div class="text-h3 font-h3 text-primary mb-2">Spa Trang Xinh</div>
+<p class="text-on-surface-variant font-body-md">Chăm sóc thú cưng bằng cả trái tim.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter mb-stack-md md:mb-0">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Liên hệ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Chính sách bảo mật</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Điều khoản sử dụng</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Facebook</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Zalo</a>
+</div>
+<div class="text-on-surface-variant font-body-md">
+                © 2024 Spa Trang Xinh. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

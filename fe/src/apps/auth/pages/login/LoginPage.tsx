@@ -128,6 +128,11 @@ export default function Login() {
         return
       }
 
+      if (response.data.roles.includes('USER')) {
+        await navigate({ to: NHAN_VIEN_HOME })
+        return
+      }
+      
       message.error('Tài khoản chưa được phân quyền phù hợp')
     },
     onError: () => {
@@ -177,7 +182,7 @@ export default function Login() {
 
             <Form.Item>
               <StyledButton type="primary" htmlType="submit" loading={loginMutation.isPending} block>
-                ĐĂNG NHẬP NGAY
+                ĐĂNG NHẬP
               </StyledButton>
             </Form.Item>
           </Form>
