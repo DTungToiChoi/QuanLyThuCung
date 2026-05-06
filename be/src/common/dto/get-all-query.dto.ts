@@ -9,28 +9,4 @@ export class GetAllQueryDto {
 
   @ApiPropertyOptional()
   PageSize?: string;
-
-  @ApiPropertyOptional()
-  'Query.Username'?: string;
-
-  @ApiPropertyOptional()
-  'Query.Email'?: string;
-
-  @ApiPropertyOptional()
-  'Query.TenSanPham'?: string;
-
-  @ApiPropertyOptional()
-  'Query.DanhMuc'?: string;
-
-  @ApiPropertyOptional()
-  'Query.HoatDong'?: string;
-
-  @ApiPropertyOptional()
-  'Query.TenDanhMuc'?: string;
-
-  @ApiPropertyOptional()
-  'Query.TenDichVu'?: string;
-
-  @ApiPropertyOptional()
-  'Query.HinhAnhUrl'?: string;
 }
