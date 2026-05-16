@@ -7,7 +7,16 @@ import { AuthController } from './auth.controller';
 import { JwtAccessStrategy } from './strategies/jwt-access.strategy';
 
 @Module({
-  imports: [JwtModule.register({}), PrismaModule, MailModule],
+  imports: [
+    JwtModule.register({
+      secret: 'mySecretKey',
+      signOptions: {
+        expiresIn: '1d',
+      },
+    }),
+    PrismaModule,
+    MailModule,
+  ],
   providers: [AuthService, JwtAccessStrategy],
   controllers: [AuthController],
 })

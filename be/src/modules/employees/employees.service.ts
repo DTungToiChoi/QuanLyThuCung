@@ -157,6 +157,25 @@ export class EmployeesService {
     return { message: 'Employee account deleted successfully.' };
   }
 
+  async getStatistics() {
+    const totalEmployees = await this.prisma.user.count({
+      where: {
+        roles: {
+          some: {
+            name: 'NHANVIEN',
+          },
+        },
+      },
+    });
+
+    const totalRoles = await this.prisma.role.count();
+
+    return {
+      tongNhanVien: totalEmployees,
+      tongVaiTro: totalRoles,
+    };
+  }
+
   private async findEmployeeById(id: number) {
     if (!Number.isInteger(id)) {
       throw new BadRequestException('Invalid employee id.');

@@ -14,6 +14,9 @@ export class DichVuPublicController {
   @ApiQuery({ name: 'Keyword', required: false, schema: { type: 'string' } })
   @ApiQuery({ name: 'Page', required: false, schema: { type: 'integer' } })
   @ApiQuery({ name: 'PageSize', required: false, schema: { type: 'integer' } })
+  @ApiQuery({ name: 'page', required: false, schema: { type: 'integer' } })
+  @ApiQuery({ name: 'pageSize', required: false, schema: { type: 'integer' } })
+  @ApiQuery({ name: 'pagesize', required: false, schema: { type: 'integer' } })
   async layTatCa(@Query() query: GetAllQueryDto) {
     const result = await this.service.layPublic(query);
     return basePaginationResponse(result.data, result.metaData);

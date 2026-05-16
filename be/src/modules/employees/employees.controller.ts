@@ -57,20 +57,18 @@ export class EmployeesController {
     required: false,
     schema: { type: 'string' },
   })
-  @ApiQuery({
-    name: 'Page',
-    required: false,
-    schema: { type: 'integer' },
-  })
-  @ApiQuery({
-    name: 'PageSize',
-    required: false,
-    schema: { type: 'integer' },
-  })
+
   async findAll(@Query() query: GetAllQueryDto) {
     const result = await this.employeesService.findAll(query);
     return basePaginationResponse(result.data, result.metaData);
   }
+  
+@Get('thong-ke')
+async getStatistics() {
+  const result = await this.employeesService.getStatistics();
+
+  return baseResponse(result);
+}
 
   @Get(':id')
   async findOne(@Param('id') id: string) {

@@ -11,7 +11,7 @@ export type ParsedGetAllQuery = {
 };
 
 export const parseGetAllQuery = (query: GetAllQueryDto): ParsedGetAllQuery => {
-  const page = Number(query.Page ?? 1);
+  const page = Number(query.Page  ?? 1);
   const pageSize = Number(query.PageSize ?? 10);
 
   if (!Number.isInteger(page) || page < 1) {

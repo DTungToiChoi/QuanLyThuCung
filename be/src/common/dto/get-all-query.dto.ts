@@ -9,4 +9,5 @@ export class GetAllQueryDto {
 
   @ApiPropertyOptional()
   PageSize?: string;
+
 }
