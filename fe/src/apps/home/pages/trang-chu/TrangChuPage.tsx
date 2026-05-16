@@ -5,6 +5,7 @@ import {
   HeartOutlined,
   HomeOutlined,
   SafetyOutlined,
+  StarFilled,
   StarOutlined,
 } from "@ant-design/icons";
 import { HomeGlobalStyle, token } from "../../styles/theme";
@@ -115,7 +116,7 @@ export default function TrangChuPage() {
                     <S.ServiceDesc>{s.moTaDichVu}</S.ServiceDesc>
 
                     <S.ServiceFooter>
-                      <S.ServicePrice>{s.giaDichVu}</S.ServicePrice>
+                      <S.ServicePrice>Giá dịch vụ: {Number(s.giaDichVu).toLocaleString('vi-VN')}₫</S.ServicePrice>
                       <S.ArrowBtn>
                         <ArrowRightOutlined />
                       </S.ArrowBtn>
@@ -156,7 +157,7 @@ export default function TrangChuPage() {
               <S.TestCard key={i}>
                 <S.Stars>
                   {Array.from({ length: 5 }).map((_, idx) => (
-                    <StarOutlined key={idx} />
+                    <StarFilled key={idx} />
                   ))}
                 </S.Stars>
 

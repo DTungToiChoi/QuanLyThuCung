@@ -14,10 +14,28 @@ export default function PageLayout({ children, hideSidebar = false }: Props) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout style={{ height: 'var(--device-height)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+    <Layout
+      style={{
+        width: '100%',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#fcf9f8',
+      }}
+    >
       <AppHeader />
       
-      <Layout style={{ minWidth: 0, flex: 1, display: 'flex', flexDirection: 'row' }}>
+      <Layout
+        style={{
+          minWidth: 0,
+          flex: '1 1 auto',
+          minHeight: 0,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'stretch',
+          background: '#fcf9f8',
+        }}
+      >
         {!hideSidebar && (
           <Sider
             collapsible
@@ -25,20 +43,25 @@ export default function PageLayout({ children, hideSidebar = false }: Props) {
             trigger={null}
             width={280}
             collapsedWidth={80}
-            // theme="dark"
-            style={{ 
-              overflow: 'auto',  
+            theme="light"
+            style={{
+              height: '100%',
+              maxHeight: '100%',
+              overflow: 'hidden',
+              background: '#fcfbf7',
+              flexShrink: 0,
             }}
           >
-          <MenuSideBar collapsed={collapsed} setCollapsed={setCollapsed} />
+            <MenuSideBar collapsed={collapsed} setCollapsed={setCollapsed} />
           </Sider>
         )}
 
         <Content
           style={{
-            background: '#fff',
+            background: '#fcf9f8',
             flex: 1,
             minHeight: 0,
+            height: '100%',
             overflow: 'hidden',
             overflowX: 'hidden',
           }}

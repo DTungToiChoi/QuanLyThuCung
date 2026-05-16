@@ -1,4 +1,4 @@
-import api from '../../lib/axios'
+import api from '@configs/axios'
 import type { IResponse } from '../types/response.type'
 
 export type LoginPayload = {

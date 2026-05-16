@@ -1,13 +1,16 @@
-import useI18n from "@/shared/hooks/useI18n";
+import { useState } from "react";
 import { LOCAL_STORAGE_KEYS } from "@constants/storageKeys";
 import { lcStorage } from "@utils/storage";
 import { Select } from "antd";
 import { WrappButton } from "./styled";
 
 export const ChangeLanguageButton = () => {
-  const { changeLang, lang } = useI18n();
-  const handleLanguageChange = async (value: string) => {
-    await changeLang(value as "vi" | "en" | "cn" | "jp" | "kr");
+  const [lang, setLang] = useState<string>(
+    lcStorage.get(LOCAL_STORAGE_KEYS.language) || "vi"
+  );
+
+  const handleLanguageChange = (value: string) => {
+    setLang(value);
     lcStorage.set(LOCAL_STORAGE_KEYS.language, value);
   };
   return (

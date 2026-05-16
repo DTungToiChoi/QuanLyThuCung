@@ -6,10 +6,11 @@ import styled from 'styled-components'
 import bgLogin from '/src/assets/bg-login.png'
 import logo from '/src/assets/logo-removebg-preview.png'
 
-import { QUAN_LY_NHAN_VIEN } from '../../../admin/constants'
+import { TONG_QUAN_ADMIN } from '../../../admin/constants'
+import { TONG_QUAN_NHAN_VIEN } from '../../../../apps/staff/constants'
 import { authApi, type LoginPayload } from '../../../../shared/services/auth'
-import { NHAN_VIEN_HOME } from '../../../../shared/constants'
 import tokenManager from '../../../../shared/utils/tokenManager'
+import { HO_SO_THU_CUNG_KHACH_HANG } from '@/apps/user/constants'
 
 const { Title, Text } = Typography
 
@@ -124,12 +125,17 @@ export default function LoginPage() {
       tokenManager.setRoles(roles)
 
       if (roles.includes('ADMIN')) {
-        await navigate({ to: QUAN_LY_NHAN_VIEN })
+        await navigate({ to: TONG_QUAN_ADMIN })
         return
       }
 
-      if (roles.includes('NHANVIEN') || roles.includes('USER')) {
-        await navigate({ to: NHAN_VIEN_HOME })
+      if (roles.includes('NHANVIEN')) {
+        await navigate({ to: TONG_QUAN_NHAN_VIEN })
+        return
+      }
+
+      if (roles.includes('USER') || roles.includes('KHACHHANG') || roles.includes('KHÁCHHÀNG')) {
+        await navigate({ to: HO_SO_THU_CUNG_KHACH_HANG })
         return
       }
 

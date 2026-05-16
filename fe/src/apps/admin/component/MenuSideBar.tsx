@@ -1,75 +1,111 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
-import { useLocation, useNavigate } from "@tanstack/react-router";
-import { Menu } from "antd";
-import { SidebarHeader } from "./styled";
-import { QUAN_LY_NHAN_VIEN } from "../constants";
+import {
+  BarChartOutlined,
+  CalendarOutlined,
+  GiftOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  ScissorOutlined,
+  ShopOutlined,
+  TeamOutlined,
+} from '@ant-design/icons'
+import { useLocation, useNavigate } from '@tanstack/react-router'
+import { Menu } from 'antd'
+import {
+  QUAN_LY_NHAN_VIEN,
+  TONG_QUAN_ADMIN,
+  LICH_HEN,
+  DICH_VU,
+  KHACH_HANG_VIP,
+  KHO_HANG,
+} from '../constants'
+import {
+  SidebarBrand,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarNav,
+  SidebarSurface,
+  SidebarTitle,
+  SidebarTitleMain,
+  SidebarTitleSub,
+  SidebarToggle,
+} from './styled'
 
 interface Props {
-  collapsed: boolean;
-  setCollapsed: (val: boolean) => void;
+  collapsed: boolean
+  setCollapsed: (val: boolean) => void
 }
 
 export default function MenuSideBar({ collapsed, setCollapsed }: Props) {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const items = [
     {
+      key: TONG_QUAN_ADMIN,
+      icon: <BarChartOutlined />,
+      label: 'Tổng quan',
+    },
+    {
       key: QUAN_LY_NHAN_VIEN,
-      label: "Quản lý nhân viên",
-    },
-    // {
-    //   key: "/thiet-lap-cau-hinh",
-    //   label: "Thiết lập cấu hình",
-    //   children: [
-    //     {
-    //       key: "/thiet-lap-cau-hinh/tang",
-    //       label: "Quản lý tầng",
-    //     },
-    //     {
-    //       key: "/thiet-lap-cau-hinh/khu-vuc",
-    //       label: "Quản lý khu vực",
-    //     },
-    //     {
-    //       key: "/thiet-lap-cau-hinh/diem-kinh-doanh",
-    //       label: "Điểm kinh doanh",
-    //     },
-    //   ],
-    // },
-    {
-      key: "/xu-ly-vi-pham",
-      label: "Xử lý vi phạm",
+      icon: <TeamOutlined />,
+      label: 'Quản lý nhân viên',
     },
     {
-      key: "/bao-cao",
-      label: "Báo cáo",
+      key: LICH_HEN,
+      icon: <CalendarOutlined />,
+      label: 'Lịch hẹn',
     },
-  ];
+    {
+      key: DICH_VU,
+      icon: <ScissorOutlined />,
+      label: 'Dịch vụ & Combo',
+    },
+    {
+      key: KHACH_HANG_VIP,
+      icon: <GiftOutlined />,
+      label: 'Khách hàng VIP',
+    },
+    {
+      key: KHO_HANG,
+      icon: <ShopOutlined />,
+      label: 'Kho hàng',
+    },
+  ]
 
   return (
-    <>
-      <SidebarHeader
-        $collapsed={collapsed}
-        onClick={() => setCollapsed(!collapsed)}
-      >
-        {collapsed ? (
-          <MenuUnfoldOutlined style={{ fontSize: "18px" }} />
-        ) : (
-          <MenuFoldOutlined style={{ fontSize: "18px" }} />
+    <SidebarSurface>
+      <SidebarHeader $collapsed={collapsed}>
+        {!collapsed && (
+          <SidebarBrand>
+            <SidebarTitle>
+              <SidebarTitleMain>Quản trị</SidebarTitleMain>
+              <SidebarTitleSub>Spa Trang Xinh</SidebarTitleSub>
+            </SidebarTitle>
+          </SidebarBrand>
         )}
-        {!collapsed && <span>Chợ Số</span>}
+        <SidebarToggle
+          type="button"
+          onClick={() => setCollapsed(!collapsed)}
+          title={collapsed ? 'Mở rộng menu' : 'Thu gọn menu'}
+        >
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </SidebarToggle>
       </SidebarHeader>
 
-      <Menu
-        theme="dark"
-        mode="inline"
-        inlineCollapsed={collapsed}
-        selectedKeys={[location.pathname]}
-        defaultOpenKeys={[location.pathname.split("/")[1]]} // mở submenu cha
-        items={items}
-        onClick={({ key }) => navigate({ to: key })}
-        style={{ borderRight: 0, backgroundColor: "transparent" }}
-      />
-    </>
-  );
+      <SidebarNav>
+        <Menu
+          mode="inline"
+          inlineCollapsed={collapsed}
+          selectedKeys={[location.pathname]}
+          items={items}
+          onClick={({ key }) => navigate({ to: String(key) })}
+          style={{ borderRight: 0, backgroundColor: 'transparent' }}
+        />
+      </SidebarNav>
+
+      <SidebarFooter $collapsed={collapsed}>
+        {collapsed ? 'STX' : 'Không gian quản trị'}
+      </SidebarFooter>
+    </SidebarSurface>
+  )
 }

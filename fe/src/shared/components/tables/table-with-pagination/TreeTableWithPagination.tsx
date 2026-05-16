@@ -1,4 +1,3 @@
-import useI18n from "@/shared/hooks/useI18n";
 import type { TableProps } from "antd";
 import { Skeleton, Table } from "antd";
 import { forwardRef, useEffect, useState } from "react";
@@ -31,7 +30,6 @@ const TreeTableWithPagination = (
   const [_pageSize, setPageSize] = useState<number>(
     (pagination && pagination?.pageSize) || 10
   );
-  const { t } = useI18n();
 
   const _dataSource = loading
     ? new Array(_pageSize).fill(null).map((_, index) => ({ key: index }))
@@ -67,13 +65,9 @@ const TreeTableWithPagination = (
           showSizeChanger: true,
           pageSize: _pageSize,
           showTotal: (total, range) =>
-            t("total_items", {
-              from: range[0],
-              to: range[1],
-              total,
-            }),
+            `Total ${range[0]}-${range[1]} of ${total}`,
           locale: {
-            items_per_page: t("items_per_page"),
+            items_per_page: "items/page",
           },
           onShowSizeChange: (_, size) => setPageSize(size),
           ...pagination,

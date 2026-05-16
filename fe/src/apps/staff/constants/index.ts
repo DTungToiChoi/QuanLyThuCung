@@ -1,0 +1,9 @@
+export const STAFF_ROUTE = '/nhan-vien'
+export const TONG_QUAN_NHAN_VIEN = `${STAFF_ROUTE}/tong-quan`
+export const TONG_QUAN_NHAN_VIEN_ROUTE = '/tong-quan'
+export const LICH_HEN_NHAN_VIEN = `${STAFF_ROUTE}/lich-hen`
+export const LICH_HEN_NHAN_VIEN_ROUTE = '/lich-hen'
+export const HO_SO_THUC_CUNG = `${STAFF_ROUTE}/ho-so-thu-cung`
+export const HO_SO_THUC_CUNG_ROUTE = '/ho-so-thu-cung'
+export const THANH_TOAN_NHAN_VIEN = `${STAFF_ROUTE}/thanh-toan`
+export const THANH_TOAN_NHAN_VIEN_ROUTE = '/thanh-toan'

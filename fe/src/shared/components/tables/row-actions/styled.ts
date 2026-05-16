@@ -15,8 +15,8 @@ export const RowButtonGroup = styled.div`
 export const RowActionButton = styled.div`
   border-radius: 999px;
   cursor: pointer;
-  width: 4rem;
-  height: 4rem;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

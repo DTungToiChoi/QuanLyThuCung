@@ -1,4 +1,4 @@
-import { ADMIN_LOGIN_ROUTE, REFRESH_TOKEN_URL } from '@/constants';
+import { ADMIN_LOGIN_ROUTE, REFRESH_TOKEN_URL } from '@constants/index';
 import type { IOriginRequest } from '@configs/axios';
 import axiosClient from '@configs/axios';
 import axios from 'axios';

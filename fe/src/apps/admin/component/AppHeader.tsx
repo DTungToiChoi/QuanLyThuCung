@@ -7,14 +7,16 @@ import {
   BellOutlined,
 } from '@ant-design/icons';
 import { Left, Right, StyledHeader, GovEmblem, SystemTitle } from './styled';
+import logo from '../../../assets/logo-removebg-preview.png';
 // import AppLauncher from './AppLauncher';
 import { useNavigate } from '@tanstack/react-router';
+import { TRANG_CHU } from '@/apps/home/constants';
 
 export default function AppHeader() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate({ to: "/", replace: true });
+    navigate({ to: TRANG_CHU, replace: true });
   };
 
   const items = [
@@ -34,8 +36,8 @@ export default function AppHeader() {
   return (
     <StyledHeader>
       <Left>
-        <GovEmblem />
-        <SystemTitle>APP_MARKET</SystemTitle>
+        <GovEmblem src={logo} alt="Spa Trang Xinh logo" />
+        <SystemTitle>Spa Trang Xinh</SystemTitle>
       </Left>
 
       <Right size={24}>
@@ -53,7 +55,7 @@ export default function AppHeader() {
 
         <Dropdown menu={{ items }}>
           <Space style={{ cursor: 'pointer', marginLeft: '12px' }}>
-            <Avatar icon={<UserOutlined />} style={{ backgroundColor: 'rgba(255,255,255,0.2)' }} />
+            <Avatar icon={<UserOutlined />} style={{ backgroundColor: '#dce5d4', color: '#6b7e46' }} />
             {/* <span style={{ color: '#fff', fontWeight: 600 }}>Tuan</span> */}
           </Space>
         </Dropdown>

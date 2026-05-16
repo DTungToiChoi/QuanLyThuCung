@@ -27,10 +27,10 @@ export const RowButtonGroup = styled.div<{ active?: boolean }>`
 
 export const RowActionButton = styled.button`
   z-index: 1;
-  border-radius: 999px;
   cursor: pointer;
-  width: 3.5rem;
-  height: 3.5rem;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

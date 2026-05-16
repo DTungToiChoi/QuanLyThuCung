@@ -4,7 +4,15 @@ export const TableWrapper = styled.div<{
   $bodyHeight?: string | number;
   paginationBackground?: string;
 }>`
-  margin-top: 16px; 
+  margin-top: 16px;
+  
+  .ant-table-title {
+    display: block !important;
+    padding: 16px 16px;
+    background-color: transparent;
+    border-bottom: none;
+  }
+  
   ${(props) =>
     props && props.$bodyHeight
       ? `.ant-table-body {
@@ -34,7 +42,7 @@ export const TableWrapper = styled.div<{
   }
 
   .ant-table-thead > tr > th {
-    background-color: var(--primary) !important;
+    background-color: #6b7e46 !important;
     color: #fff !important;
 
     /* (VI): Tùy chỉnh mũi tên sort cho toàn bộ hệ thống */
